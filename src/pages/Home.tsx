@@ -9,6 +9,7 @@ import HomeHeroPhotos from '../components/home/HomeHeroPhotos';
 import HomeMarquee from '../components/home/HomeMarquee';
 import HomeKalkulatorLive from '../components/home/HomeKalkulatorLive';
 import HomeBlitzLive from '../components/home/HomeBlitzLive';
+import InstagramFeed from '../components/home/InstagramFeed';
 import { TRADES_PREVIEW } from '../data/home';
 import { PREVIEW_IMAGES } from '../data/gewerke';
 import '../styles/pages/home.css';
@@ -366,6 +367,9 @@ export default function Home() {
           meta: t('testimonial.meta'),
         }}
       />
+
+      {/* INSTAGRAM — hidden until the account is connected */}
+      <InstagramFeed />
 
       {/* FINAL CTA */}
       <section className="end-cta">

@@ -234,6 +234,15 @@
     "name": "Famille Brauer",
     "meta": "Rénovation complète d'un appartement en copropriété · Sachsenhausen"
   },
+  "instagram": {
+    "eyebrow": "Instagram",
+    "title": "Directement du<br/><em>chantier.</em>",
+    "intro": "Avancées, détails et espaces terminés — documentés au fil du chantier sur Instagram. Suivez-nous pour le travail entre les projets.",
+    "viewPost": "Voir la publication sur Instagram",
+    "imageAlt": "Publication de Prima Vista Bauprojekte sur Instagram",
+    "badgeVideo": "Vidéo",
+    "badgeAlbum": "Plusieurs images"
+  },
   "finalCta": {
     "title": "Parlons de<br/>votre <em>projet de construction.</em>",
     "p": "Première consultation gratuite. Rendez-vous sous 48 heures, sur place ou en visioconférence — en Allemagne et en Suisse.",

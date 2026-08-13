@@ -234,6 +234,15 @@
     "name": "Famiglia Brauer",
     "meta": "Ristrutturazione completa dell'appartamento · Sachsenhausen"
   },
+  "instagram": {
+    "eyebrow": "Instagram",
+    "title": "Direttamente dal<br/><em>cantiere.</em>",
+    "intro": "Avanzamenti, dettagli e ambienti finiti — documentati passo dopo passo su Instagram. Seguiteci per il lavoro tra un progetto e l'altro.",
+    "viewPost": "Vedi il post su Instagram",
+    "imageAlt": "Post di Prima Vista Bauprojekte su Instagram",
+    "badgeVideo": "Video",
+    "badgeAlbum": "Più immagini"
+  },
   "finalCta": {
     "title": "Parliamo del<br/>suo <em>progetto edilizio.</em>",
     "p": "Prima consulenza gratuita. Appuntamento entro 48 ore, in loco o in videochiamata — in Germania e Svizzera.",
