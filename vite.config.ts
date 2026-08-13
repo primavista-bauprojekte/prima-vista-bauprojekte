@@ -103,6 +103,8 @@ function blogDevPlugin(): Plugin {
     { pattern: /^\/api\/uploads$/, module: '/netlify/functions/uploads.ts', params: () => ({}) },
     { pattern: /^\/api\/uploads\/([^/?#]+)$/, module: '/netlify/functions/uploads.ts', params: (m: RegExpMatchArray) => ({ key: decodeURIComponent(m[1]) }) },
     { pattern: /^\/api\/calculator-pdf$/, module: '/netlify/functions/calculator-pdf.ts', params: () => ({}) },
+    { pattern: /^\/api\/instagram$/, module: '/netlify/functions/instagram.ts', params: () => ({}) },
+    { pattern: /^\/api\/instagram\/image\/([^/?#]+)$/, module: '/netlify/functions/instagram.ts', params: (m: RegExpMatchArray) => ({ id: decodeURIComponent(m[1]) }) },
   ];
 
   return {
@@ -209,7 +211,7 @@ function mailDevPlugin(): Plugin {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  for (const key of ['ANTHROPIC_API_KEY', 'RESEND_API_KEY', 'MAIL_FROM', 'MAIL_TO_OFFICE', 'MAIL_DRY_RUN', 'MONGODB_URI', 'MONGODB_DB', 'JWT_SECRET', 'GOOGLE_CLIENT_ID', 'ADMIN_GOOGLE_EMAIL', 'GOOGLE_CALENDAR_ID', 'GOOGLE_SA_EMAIL', 'GOOGLE_SA_KEY'] as const) {
+  for (const key of ['ANTHROPIC_API_KEY', 'RESEND_API_KEY', 'MAIL_FROM', 'MAIL_TO_OFFICE', 'MAIL_DRY_RUN', 'MONGODB_URI', 'MONGODB_DB', 'JWT_SECRET', 'GOOGLE_CLIENT_ID', 'ADMIN_GOOGLE_EMAIL', 'GOOGLE_CALENDAR_ID', 'GOOGLE_SA_EMAIL', 'GOOGLE_SA_KEY', 'INSTAGRAM_ACCESS_TOKEN', 'INSTAGRAM_USERNAME', 'INSTAGRAM_POST_LIMIT', 'INSTAGRAM_API_VERSION'] as const) {
     if (env[key]) process.env[key] = env[key];
   }
   return {
@@ -275,6 +277,20 @@ export default defineConfig(({ mode }) => {
           // Don't fall back to index.html for API or function URLs.
           navigateFallbackDenylist: [/^\/api\//, /^\/\.netlify\//],
           runtimeCaching: [
+            {
+              // Must precede the generic image rule — Workbox matches in order.
+              // Instagram tiles refresh as new posts arrive, and letting them
+              // share the 80-entry pv-images LRU would evict the site's own
+              // hero photos. Their URLs are id-addressed and immutable, so
+              // CacheFirst in a separate bucket is safe.
+              urlPattern: ({ url }) => url.pathname.startsWith('/api/instagram/image/'),
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'pv-instagram',
+                expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 30 },
+                cacheableResponse: { statuses: [0, 200] },
+              },
+            },
             {
               urlPattern: ({ request }) => request.destination === 'image',
               handler: 'CacheFirst',

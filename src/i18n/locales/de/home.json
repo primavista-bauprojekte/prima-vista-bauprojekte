@@ -234,6 +234,15 @@
     "name": "Familie Brauer",
     "meta": "Komplettsanierung Eigentumswohnung · Sachsenhausen"
   },
+  "instagram": {
+    "eyebrow": "Instagram",
+    "title": "Direkt von der<br/><em>Baustelle.</em>",
+    "intro": "Fortschritte, Details und fertige Räume — laufend dokumentiert auf Instagram. Folgen Sie uns für die Arbeit zwischen den Projekten.",
+    "viewPost": "Beitrag auf Instagram ansehen",
+    "imageAlt": "Beitrag von Prima Vista Bauprojekte auf Instagram",
+    "badgeVideo": "Video",
+    "badgeAlbum": "Mehrere Bilder"
+  },
   "finalCta": {
     "title": "Lassen Sie uns über<br/>Ihr <em>Bauprojekt</em> reden.",
     "p": "Erste Beratung kostenlos. Termin innerhalb von 48 Stunden, vor Ort oder per Video — in Deutschland und der Schweiz.",
