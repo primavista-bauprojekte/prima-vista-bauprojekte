@@ -335,6 +335,7 @@ export default defineConfig(({ mode }) => {
         '**/dist/**',
         '**/.git/**',
         '**/.cache/**',
+        '**/.tmp/**',
         '**/.output/**',
         '**/coverage/**',
         '**/.claude/**',
