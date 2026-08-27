@@ -62,7 +62,7 @@ export default function KontaktIntro() {
         </div>
         <div className="kontakt__office">
           <h4>{t('intro.officeCh')}</h4>
-          <p><strong>Prima Vista Bauprojekte AG</strong><br />
+          <p><strong>Prima Vista Bauprojekte GmbH</strong><br />
             Spinnereistrasse 5<br />
             6020 Emmenbrücke<br />
             {t('intro.countryCh')}<br />
