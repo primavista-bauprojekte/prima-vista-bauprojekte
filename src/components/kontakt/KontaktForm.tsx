@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import { useLocation } from 'react-router';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from '../../i18n/Link';
@@ -10,6 +10,7 @@ import {
   type ContactFormState,
 } from '../../data/kontakt';
 import DatePickerField from './DatePickerField';
+import { trackGoogleAnalyticsLead } from '../../utils/googleAnalytics';
 
 type KontaktErrors = Partial<Record<keyof ContactFormState, string>>;
 
@@ -36,6 +37,7 @@ export default function KontaktForm() {
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const leadSubmission = useRef({});
 
   function update<K extends keyof ContactFormState>(key: K, value: ContactFormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -108,6 +110,8 @@ export default function KontaktForm() {
         if (err.error === 'availability_unavailable') throw new Error(t('form.errors.availabilityUnavailable'));
         throw new Error(err.error || `HTTP ${res.status}`);
       }
+      const acknowledgement: unknown = await res.json().catch(() => null);
+      trackGoogleAnalyticsLead('contact', res, acknowledgement, leadSubmission.current);
       setSent(true);
     } catch (err) {
       const msg = err instanceof Error ? err.message : t('form.errors.unknown');

@@ -184,7 +184,7 @@ export default async (req: Request) => {
 
   try {
     const outcome = await processBlitzSubmission(result, store, { forceManualReason });
-    return json({ ok: true, mode: outcome.mode });
+    return json({ ok: true, mode: outcome.mode, duplicate: outcome.duplicate });
   } catch (err) {
     console.error('[blitz] send failed', err);
     return json({ error: 'Send failed' }, { status: 502 });

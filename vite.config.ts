@@ -181,7 +181,7 @@ function mailDevPlugin(): Plugin {
           const result = await flow.processBlitzSubmission(
             body as Parameters<BlitzFlowModule['processBlitzSubmission']>[0],
           );
-          sendJson(res, 200, { ok: true, mode: result.mode });
+          sendJson(res, 200, { ok: true, mode: result.mode, duplicate: result.duplicate });
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
           console.error('[mail-dev:blitz]', message);

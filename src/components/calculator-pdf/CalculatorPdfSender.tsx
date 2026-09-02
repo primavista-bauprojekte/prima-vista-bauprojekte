@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useState, type FormEvent } from 'react';
+import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../../i18n/useLocale';
@@ -6,6 +6,7 @@ import { formatEuroLocalized } from '../../i18n/calculatorCatalog';
 import type { Locale } from '../../i18n/routes';
 import type { KalkulatorHandoff, KalkulatorPick, KalkulatorRow } from '../../data/blitzAngebot';
 import { CloseIcon, MailIcon, PreviewIcon } from '../icons';
+import { trackGoogleAnalyticsLead } from '../../utils/googleAnalytics';
 import '../../styles/components/calculator-pdf.css';
 
 type Props = {
@@ -138,6 +139,7 @@ export default function CalculatorPdfSender({ handoff, disabled }: Props) {
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<SendState>('idle');
   const [message, setMessage] = useState('');
+  const leadSubmission = useRef({});
 
   const unavailable = disabled || !handoff;
   const previewGroups = useMemo(() => buildPreviewGroups(handoff), [handoff]);
@@ -159,6 +161,13 @@ export default function CalculatorPdfSender({ handoff, disabled }: Props) {
     };
   }, [open, unavailable]);
 
+  function resetSendState() {
+    // Editing starts a distinct flow; unchanged resends and failed-request
+    // retries keep their token. In-flight requests retain their captured token.
+    leadSubmission.current = {};
+    if (status !== 'sending') setStatus('idle');
+  }
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!handoff || status === 'sending') return;
@@ -177,6 +186,7 @@ export default function CalculatorPdfSender({ handoff, disabled }: Props) {
 
     setStatus('sending');
     setMessage('');
+    const submission = leadSubmission.current;
 
     try {
       const response = await fetch('/api/calculator-pdf', {
@@ -192,6 +202,8 @@ export default function CalculatorPdfSender({ handoff, disabled }: Props) {
       });
 
       if (!response.ok) throw new Error('PDF could not be sent.');
+      const acknowledgement: unknown = await response.json().catch(() => null);
+      trackGoogleAnalyticsLead('calculator', response, acknowledgement, submission);
       setStatus('sent');
       setMessage(t('pdf.sent'));
     } catch {
@@ -255,7 +267,7 @@ export default function CalculatorPdfSender({ handoff, disabled }: Props) {
                   value={email}
                   onChange={(event) => {
                     setEmail(event.currentTarget.value);
-                    if (status !== 'sending') setStatus('idle');
+                    resetSendState();
                   }}
                   placeholder={t('pdf.emailPlaceholder')}
                 />
@@ -269,7 +281,7 @@ export default function CalculatorPdfSender({ handoff, disabled }: Props) {
                     checked={consent}
                     onChange={(event) => {
                       setConsent(event.currentTarget.checked);
-                      if (status !== 'sending') setStatus('idle');
+                      resetSendState();
                     }}
                   />
                   <span aria-hidden="true" />

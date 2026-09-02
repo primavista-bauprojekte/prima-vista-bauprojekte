@@ -3,6 +3,7 @@ import { useLocation } from 'react-router';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from '../../i18n/Link';
 import { useLocale } from '../../i18n/useLocale';
+import { trackGoogleAnalyticsLead } from '../../utils/googleAnalytics';
 import {
   BLITZ_ART_OPTIONS,
   BLITZ_SERVICE_GROUPS,
@@ -112,6 +113,7 @@ export default function BlitzForm() {
   const [sentMode, setSentMode] = useState<'auto' | 'manual'>('manual');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const leadSubmission = useRef({});
   // If we came in from the kalkulator, skip category and service selection.
   const [step, setStep] = useState(handoff ? 3 : 1);
   const serviceGroups = BLITZ_SERVICE_GROUPS.filter((group) => group.key === form.art);
@@ -252,6 +254,7 @@ export default function BlitzForm() {
         throw new Error(err.error || `HTTP ${res.status}`);
       }
       const data = await res.json().catch(() => ({}));
+      trackGoogleAnalyticsLead('quote', res, data, leadSubmission.current);
       setSentMode(data.mode === 'auto' ? 'auto' : 'manual');
       setSent(true);
     } catch (err) {
