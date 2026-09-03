@@ -17,6 +17,7 @@ import LocaleSync from '../i18n/LocaleSync';
 import { localeFromPathname, toCanonicalPath } from '../i18n/routes';
 import {
   hasGoogleAnalyticsConfig,
+  trackGoogleAnalyticsContactClick,
   trackGoogleAnalyticsPageView,
   updateGoogleAnalyticsConsent,
 } from '../utils/googleAnalytics';
@@ -262,6 +263,11 @@ function GoogleAnalyticsTracker() {
   const hasTrackedPath = useRef('');
   const analyticsAllowed = hasAnalyticsConsent(consent);
   const pagePath = `${location.pathname}${location.search}${location.hash}`;
+
+  useEffect(() => {
+    document.addEventListener('click', trackGoogleAnalyticsContactClick);
+    return () => document.removeEventListener('click', trackGoogleAnalyticsContactClick);
+  }, []);
 
   useEffect(() => {
     if (!hasGoogleAnalyticsConfig()) return;

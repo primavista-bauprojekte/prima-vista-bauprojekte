@@ -16,7 +16,7 @@ export type ConsentPayload = {
   savedAt: string;
 };
 
-function readConsent(): ConsentPayload | null {
+export function readConsent(): ConsentPayload | null {
   if (typeof window === 'undefined') return null;
   try {
     const raw = window.localStorage.getItem(CONSENT_STORAGE_KEY);
