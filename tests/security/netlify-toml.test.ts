@@ -40,6 +40,25 @@ describe.each(['netlify-cli', '@netlify/zip-it-and-ship-it'])('%s TOML parser', 
   });
 
   it.each([
+    ['arrays', `value=${'['.repeat(3000)}1${']'.repeat(3000)}`],
+    ['inline tables', `value=${'{item='.repeat(3000)}1${'}'.repeat(3000)}`],
+  ])('rejects deeply nested %s without overflowing the stack', (_name, source) => {
+    let parseError: unknown;
+    try {
+      toml.parse(source);
+    } catch (error) {
+      parseError = error;
+    }
+
+    expect(parseError).not.toBeInstanceOf(RangeError);
+    expect(parseError).toMatchObject({
+      message: expect.stringMatching(/maximum nesting depth/i),
+      line: 1,
+      column: expect.any(Number),
+    });
+  });
+
+  it.each([
     ['scalar traversal', `[a.b]\ny = 1\n[a.b.y.__proto__.__proto__]\n${pollutionKey} = "unsafe"`],
     ['table-array prefix clearing', `aa = 1\n[[a]]\n[aa.__proto__.__proto__]\n${pollutionKey} = "unsafe"`],
   ])('rejects prototype pollution through %s', (_name, source) => {
