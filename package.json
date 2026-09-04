@@ -30,7 +30,7 @@
         "@types/jsonwebtoken": "^9.0.10",
         "@types/pdfkit": "^0.17.6",
         "bcryptjs": "^3.0.3",
-        "google-auth-library": "^10.9.1",
+        "google-auth-library": "^11.0.2",
         "i18next": "^25.10.10",
         "jsonwebtoken": "^9.0.3",
         "mongodb": "^7.2.0",
