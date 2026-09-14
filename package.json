@@ -31,7 +31,7 @@
         "@types/pdfkit": "^0.17.6",
         "bcryptjs": "^3.0.3",
         "google-auth-library": "^11.0.2",
-        "i18next": "^25.10.10",
+        "i18next": "^26.4.2",
         "jsonwebtoken": "^9.0.3",
         "mongodb": "^7.6.0",
         "mongoose": "^9.9.4",
