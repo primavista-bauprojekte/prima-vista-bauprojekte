@@ -45,5 +45,5 @@
   },
   "panelAria": "Conseiller travaux de Prima Vista",
   "error": "Le conseiller travaux n'est pas encore configuré en local.",
-  "fallbackMessage": "Désolé, un problème technique survient actuellement. Veuillez nous écrire directement à office@primavista-bauprojekte.com ou nous appeler au +49 1578 98 18 308."
+  "fallbackMessage": "Désolé, un problème technique survient actuellement. Veuillez nous écrire directement à office@primavista-bauprojekte.com ou nous appeler au {{phone}}."
 }

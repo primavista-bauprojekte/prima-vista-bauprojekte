@@ -1,3 +1,4 @@
+import { businessContact } from '../../shared/contact';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from '../i18n/Link';
 import Counter from '../components/Counter';
@@ -388,8 +389,8 @@ export default function Home() {
             <Link className="btn btn--dark" to="/blitz-angebot">
               {t('finalCta.expressQuote')} <span className="arrow">&gt;</span>
             </Link>
-            <a className="btn btn--dark" href="tel:+4915789818308" style={{ borderColor: 'rgba(236, 229, 223, .25)' }}>
-              +49 1578 98 18 308
+            <a className="btn btn--dark" href={businessContact.primary.telHref} aria-label={`${t('common:contact.primary')}: ${businessContact.primary.display}`} style={{ borderColor: 'rgba(236, 229, 223, .25)' }}>
+              {businessContact.primary.display}
             </a>
           </div>
         </div>

@@ -131,7 +131,28 @@ describe('Blitz email rendering', () => {
 });
 
 describe('Blitz email localization (customer confirmation)', () => {
-  it('defaults to German when no locale is provided (byte-for-byte unchanged)', () => {
+  it.each([
+    ['de', 'Hauptkontakt', 'Alternativer Kontakt (Sonja)'],
+    ['en', 'Primary contact', 'Alternative contact (Sonja)'],
+    ['it', 'Contatto principale', 'Contatto alternativo (Sonja)'],
+    ['fr', 'Contact principal', 'Autre contact (Sonja)'],
+  ] as const)('keeps the primary and alternative contacts consistent in %s HTML and text', (locale, primaryLabel, secondaryLabel) => {
+    const { customer, office } = renderBlitzEmails({ ...sampleBlitzPayload, locale });
+    expect(customer.html).toContain(`<html lang="${locale}">`);
+    for (const email of [customer, office]) {
+      expect(email.html).toContain('href="tel:+4917648747554"');
+      expect(email.html).toContain('href="tel:+4915789818308"');
+      expect(email.html.indexOf('+49 176 48747554')).toBeLessThan(email.html.indexOf('+49 1578 9818308'));
+    }
+    expect(customer.html).toContain(primaryLabel);
+    expect(customer.html).toContain(secondaryLabel);
+    expect(customer.text).toContain(`${primaryLabel}: +49 176 48747554`);
+    expect(customer.text).toContain(`${secondaryLabel}: +49 1578 9818308`);
+    expect(office.html).toContain('Hauptkontakt');
+    expect(office.html).toContain('Alternativer Kontakt (Sonja)');
+  });
+
+  it('defaults to German when no locale is provided', () => {
     const emails = renderBlitzEmails(sampleBlitzPayload);
     expect(emails.customer.subject).toBe('Ihre Blitzanfrage ist eingegangen — Prima Vista Bauprojekte');
     expect(emails.customer.html).toContain('Ihre Angaben');

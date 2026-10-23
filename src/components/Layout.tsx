@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useNavigationType } from 'react-router';
 import Header from './Header';
+import BusinessContactSchema from './BusinessContactSchema';
 import Footer from './Footer';
 import SocialRail from './SocialRail';
 import BookingFloat from './BookingFloat';
@@ -294,6 +295,7 @@ export default function Layout() {
     <LightboxProvider>
       <LocaleSync />
       <RouteMetadata />
+      <BusinessContactSchema />
       <GoogleAnalyticsTracker />
       <ScrollToTop />
       <Header />

@@ -45,5 +45,5 @@
   },
   "panelAria": "Bau-Berater von Prima Vista",
   "error": "Der Bau-Berater ist lokal noch nicht konfiguriert.",
-  "fallbackMessage": "Entschuldigung, gerade gibt es ein technisches Problem. Bitte schreiben Sie uns direkt an office@primavista-bauprojekte.com oder rufen Sie uns unter +49 1578 98 18 308 an."
+  "fallbackMessage": "Entschuldigung, gerade gibt es ein technisches Problem. Bitte schreiben Sie uns direkt an office@primavista-bauprojekte.com oder rufen Sie uns unter {{phone}} an."
 }

@@ -45,5 +45,5 @@
   },
   "panelAria": "Prima Vista Building Advisor",
   "error": "The Building Advisor is not yet configured locally.",
-  "fallbackMessage": "Sorry, we are having a technical problem right now. Please write to us directly at office@primavista-bauprojekte.com or call us on +49 1578 98 18 308."
+  "fallbackMessage": "Sorry, we are having a technical problem right now. Please write to us directly at office@primavista-bauprojekte.com or call us on {{phone}}."
 }

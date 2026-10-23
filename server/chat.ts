@@ -1,4 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
+import { businessContact } from '../shared/contact.js';
 
 export type ChatMessage = {
   role: 'user' | 'assistant';
@@ -28,8 +29,10 @@ LEISTUNGEN
 - Online-Kostenkalkulator (/kalkulator) und Blitzangebot mit schriftlicher Kostenschätzung in 24 Std. (/blitz-angebot)
 
 KONTAKT
-- Telefon DE: +49 1578 98 18 308
-- Telefon CH: +41 78 265 93 32
+- Hauptkontakt DE: ${businessContact.primary.display}
+- Alternativer Kontakt DE (Sonja): ${businessContact.secondary.display}
+- Telefon CH: ${businessContact.swiss.display}
+- Bei deutschen Kontaktanfragen immer zuerst den Hauptkontakt nennen; Sonja bleibt die Alternative.
 - E-Mail DE: office@primavista-bauprojekte.com
 - E-Mail CH: info@primavista-bauprojekte.ch
 - Erstgespräch kostenlos, Termin in 48 Stunden, vor Ort oder per Video
@@ -42,7 +45,7 @@ GESPRÄCHSFÜHRUNG
 - Bei Preisfragen: keine konkreten Zahlen erfinden. Verweise auf den Kalkulator /kalkulator für eine eigene Schätzung oder auf das Blitzangebot /blitz-angebot für eine schriftliche Kostenschätzung in 24 Std.
 - Wenn Kundinnen oder Kunden nach Referenzen fragen: auf den Projektbereich /projekte und Empfehlungen ehemaliger Kunden hinweisen.
 - Wenn Kundinnen oder Kunden außerhalb von Deutschland oder der Schweiz anfragen: den Einzugsbereich höflich erklären.
-- Bei Notfall oder Wasserschaden: direkt auf Telefon DE +49 1578 98 18 308 verweisen.
+- Bei Notfall oder Wasserschaden: direkt auf den Hauptkontakt DE ${businessContact.primary.display} verweisen.
 - Wenn etwas außerhalb deines Wissens liegt: ehrlich sagen und auf einen Menschen verweisen.
 - Vermeide Floskeln wie "Selbstverständlich", "Gerne", "Wir kümmern uns um alles".
 

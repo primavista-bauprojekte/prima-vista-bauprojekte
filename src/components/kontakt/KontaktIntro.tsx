@@ -1,3 +1,5 @@
+import { businessContact } from '../../../shared/contact';
+import ContactNumbers from '../ContactNumbers';
 import { Trans, useTranslation } from 'react-i18next';
 import { MailIcon, PhoneIcon } from '../icons';
 
@@ -17,11 +19,10 @@ export default function KontaktIntro() {
           <div className="kontakt__channel-body">
             <h4 className="kontakt__channel-label">{t('intro.phoneLabel')}</h4>
             <p className="kontakt__channel-val">
-              <a href="tel:+4915789818308">+49 1578 98 18 308</a>
-              <br />
-              <a href="tel:+41782659332">+41 78 265 93 32</a>
+              <ContactNumbers includeSwiss />
             </p>
             <p className="kontakt__channel-meta">{t('intro.phoneMeta')}</p>
+            <a href={businessContact.primary.whatsappHref} target="_blank" rel="noopener noreferrer">{t('common:contact.whatsapp')}</a>
           </div>
         </div>
         <div className="kontakt__channel">
@@ -58,7 +59,7 @@ export default function KontaktIntro() {
             Gref-Völsing-Strasse 13<br />
             60314 Frankfurt<br />
             {t('intro.countryDe')}<br />
-            <a href="tel:+4915789818308">+49 1578 98 18 308</a></p>
+            <ContactNumbers /></p>
         </div>
         <div className="kontakt__office">
           <h4>{t('intro.officeCh')}</h4>
@@ -66,7 +67,7 @@ export default function KontaktIntro() {
             Spinnereistrasse 5<br />
             6020 Emmenbrücke<br />
             {t('intro.countryCh')}<br />
-            <a href="tel:+41782659332">+41 78 265 93 32</a></p>
+            <a href={businessContact.swiss.telHref}>{businessContact.swiss.display}</a></p>
         </div>
       </div>
 

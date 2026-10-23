@@ -103,5 +103,11 @@
     "imprint": "Mentions légales",
     "privacy": "Confidentialité",
     "copyright": "© 2026 Prima Vista Bauprojekte GmbH"
+  },
+  "contact": {
+    "primary": "Contact principal",
+    "secondary": "Autre contact (Sonja)",
+    "swiss": "Contact en Suisse",
+    "whatsapp": "Contact principal sur WhatsApp"
   }
 }

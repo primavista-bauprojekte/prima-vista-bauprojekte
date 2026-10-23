@@ -53,6 +53,9 @@ describe('chat through the actual Anthropic SDK', () => {
     expect(body.messages).toEqual(messages);
     expect(body.stream).toBe(true);
     expect(body.system[0].cache_control).toEqual({ type: 'ephemeral' });
+    expect(body.system[0].text).toContain('Hauptkontakt DE: +49 176 48747554');
+    expect(body.system[0].text).toContain('Alternativer Kontakt DE (Sonja): +49 1578 9818308');
+    expect(body.system[0].text).toContain('Telefon CH: +41 78 265 93 32');
     if (instruction) expect(body.system[1].text).toContain(instruction);
     else expect(body.system).toHaveLength(1);
   });
