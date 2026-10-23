@@ -45,5 +45,5 @@
   },
   "panelAria": "Consulente edilizio di Prima Vista",
   "error": "Il consulente edilizio non è ancora configurato in locale.",
-  "fallbackMessage": "Ci scusiamo, al momento c'è un problema tecnico. Ci scriva direttamente a office@primavista-bauprojekte.com oppure ci chiami al +49 1578 98 18 308."
+  "fallbackMessage": "Ci scusiamo, al momento c'è un problema tecnico. Ci scriva direttamente a office@primavista-bauprojekte.com oppure ci chiami al {{phone}}."
 }

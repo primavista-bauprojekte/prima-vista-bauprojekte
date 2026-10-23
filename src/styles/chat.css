@@ -306,8 +306,9 @@ body.pv-chat-open {
 }
 
 .pv-chat-rail__proof span,
-.pv-chat-rail__contact a,
-.pv-chat-rail__contact span {
+.pv-chat-rail__contact > a,
+.pv-chat-rail__contact > span,
+.pv-chat-rail__phones {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -831,3 +832,5 @@ body.pv-chat-open {
     transition: none;
   }
 }
+
+.pv-chat-rail__phones { align-items: flex-start; }

@@ -1,4 +1,5 @@
 import PDFDocument from 'pdfkit';
+import { businessContact } from '../shared/contact.js';
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { KalkulatorHandoff, KalkulatorPick, KalkulatorRow } from './mail.js';
@@ -324,7 +325,13 @@ function addFooter(doc: PDFKit.PDFDocument, pageNumber: number, totalPages: numb
       width: 136,
       isOffice: false,
       title: tt(locale, 'pdfFooterContactTitle'),
-      lines: [tt(locale, 'pdfFooterPhone'), tt(locale, 'pdfFooterEmail')],
+      lines: [
+        tt(locale, 'contactPrimaryLabel'),
+        businessContact.primary.display,
+        tt(locale, 'contactSecondaryLabel'),
+        businessContact.secondary.display,
+        tt(locale, 'pdfFooterEmail'),
+      ],
     },
     {
       x: PAGE.marginX + 316,
@@ -338,7 +345,7 @@ function addFooter(doc: PDFKit.PDFDocument, pageNumber: number, totalPages: numb
       width: 104,
       isOffice: false,
       title: tt(locale, 'pdfFooterSwitzerlandTitle'),
-      lines: ['Emmenbrücke / Luzern', '+41 78 265 93 32', 'info@primavista-bauprojekte.ch'],
+      lines: ['Emmenbrücke / Luzern', businessContact.swiss.display, 'info@primavista-bauprojekte.ch'],
     },
   ];
 

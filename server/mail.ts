@@ -6,6 +6,7 @@
  */
 
 import { Resend } from 'resend';
+import { businessContact } from '../shared/contact.js';
 import { buildCalculatorPdf, type CalculatorPdfPayload } from './calculatorPdf.js';
 import type { BlitzEstimate } from './blitzEstimate.js';
 import {
@@ -179,9 +180,13 @@ const escape = (s: string) =>
 
 const nl2br = (s: string) => escape(s).replace(/\n/g, '<br />');
 
-function shell(title: string, eyebrow: string, body: string): string {
+function businessPhoneText(locale: Locale): string {
+  return `${tt(locale, 'contactPrimaryLabel')}: ${businessContact.primary.display}\n${tt(locale, 'contactSecondaryLabel')}: ${businessContact.secondary.display}`;
+}
+
+function shell(title: string, eyebrow: string, body: string, locale: Locale = 'de'): string {
   return `<!doctype html>
-<html lang="de">
+<html lang="${locale}">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -204,7 +209,9 @@ ${body}
 </td></tr>
 <tr><td style="padding:20px 40px;background:${COLORS.bg};border-top:1px solid ${COLORS.rule};">
 <div style="font-family:Helvetica, Arial, sans-serif;font-size:11px;color:${COLORS.muted};line-height:1.6;">
-Prima Vista Bauprojekte · Gref-Völsing-Straße 13, 60314 Frankfurt am Main · +49 1578 98 18 308<br />
+Prima Vista Bauprojekte · Gref-Völsing-Straße 13, 60314 Frankfurt am Main<br />
+${escape(tt(locale, 'contactPrimaryLabel'))}: <a href="${businessContact.primary.telHref}" style="color:${COLORS.copper};text-decoration:none;">${businessContact.primary.display}</a><br />
+${escape(tt(locale, 'contactSecondaryLabel'))}: <a href="${businessContact.secondary.telHref}" style="color:${COLORS.copper};text-decoration:none;">${businessContact.secondary.display}</a><br />
 <a href="https://primavista-bauprojekte.com" style="color:${COLORS.copper};text-decoration:none;">primavista-bauprojekte.com</a>
 </div>
 </td></tr>
@@ -707,7 +714,7 @@ ${steps([
   tt(locale, 'kontaktStep3'),
 ])}
 ${bodyParagraph(tt(locale, 'signature'))}`;
-  return shell(interpolate(tt(locale, 'kontaktTitle'), { name: escape(p.vorname) }), tt(locale, 'kontaktEyebrow'), body);
+  return shell(interpolate(tt(locale, 'kontaktTitle'), { name: escape(p.vorname) }), tt(locale, 'kontaktEyebrow'), body, locale);
 }
 
 function kontaktConfirmText(p: KontaktPayload, locale: Locale): string {
@@ -731,6 +738,7 @@ function kontaktConfirmText(p: KontaktPayload, locale: Locale): string {
     tt(locale, 'signatureLine1'),
     tt(locale, 'signatureName'),
     tt(locale, 'company'),
+    businessPhoneText(locale),
   ].join('\n');
 }
 
@@ -838,7 +846,7 @@ ${steps([
   tt(locale, 'blitzStep3'),
 ])}
 ${bodyParagraph(tt(locale, 'signature'))}`;
-  return shell(interpolate(tt(locale, 'blitzTitle'), { name: escape(firstName) }), tt(locale, 'blitzEyebrow'), body);
+  return shell(interpolate(tt(locale, 'blitzTitle'), { name: escape(firstName) }), tt(locale, 'blitzEyebrow'), body, locale);
 }
 
 function blitzConfirmText(p: BlitzPayload, locale: Locale): string {
@@ -878,6 +886,7 @@ function blitzConfirmText(p: BlitzPayload, locale: Locale): string {
     tt(locale, 'signatureLine1'),
     tt(locale, 'signatureName'),
     tt(locale, 'company'),
+    businessPhoneText(locale),
   ].join('\n');
 }
 
@@ -918,7 +927,7 @@ ${steps([
   tt(locale, 'blitzAutoStep3'),
 ])}
 ${bodyParagraph(tt(locale, 'signature'))}`;
-  return shell(interpolate(tt(locale, 'blitzAutoTitle'), { name: escape(firstName) }), tt(locale, 'blitzAutoEyebrow'), body);
+  return shell(interpolate(tt(locale, 'blitzAutoTitle'), { name: escape(firstName) }), tt(locale, 'blitzAutoEyebrow'), body, locale);
 }
 
 function blitzAutoText(p: BlitzPayload, estimate: BlitzEstimate, pdfAttached: boolean, locale: Locale): string {
@@ -958,6 +967,7 @@ function blitzAutoText(p: BlitzPayload, estimate: BlitzEstimate, pdfAttached: bo
     tt(locale, 'signatureLine1'),
     tt(locale, 'signatureName'),
     tt(locale, 'company'),
+    businessPhoneText(locale),
   ].filter((line) => line !== '').join('\n');
 }
 
@@ -993,7 +1003,7 @@ ${steps([
 ])}
 ${bodyParagraph(tt(locale, 'signature'))}`;
 
-  return shell(tt(locale, 'pdfMailTitle'), tt(locale, 'pdfMailEyebrow'), body);
+  return shell(tt(locale, 'pdfMailTitle'), tt(locale, 'pdfMailEyebrow'), body, locale);
 }
 
 function calculatorPdfText(p: CalculatorPdfPayload, locale: Locale): string {
@@ -1011,6 +1021,7 @@ function calculatorPdfText(p: CalculatorPdfPayload, locale: Locale): string {
     tt(locale, 'signatureLine1'),
     tt(locale, 'signatureName'),
     tt(locale, 'company'),
+    businessPhoneText(locale),
   ].join('\n');
 }
 

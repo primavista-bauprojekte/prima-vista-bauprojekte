@@ -1,3 +1,5 @@
+import { businessContact } from '../../shared/contact';
+import ContactNumbers from './ContactNumbers';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useLocation } from 'react-router';
 import { Trans, useTranslation } from 'react-i18next';
@@ -412,7 +414,7 @@ function BrandRail() {
       </div>
 
       <address className="pv-chat-rail__contact">
-        <a href="tel:+4915789818308"><PhoneIcon /> +49 1578 98 18 308</a>
+        <div className="pv-chat-rail__phones"><PhoneIcon /><ContactNumbers /></div>
         <a href="mailto:office@primavista-bauprojekte.com"><MailIcon /> office@primavista-bauprojekte.com</a>
         <span><PinIcon /> {t('rail.location')}</span>
       </address>
@@ -676,7 +678,7 @@ function ChatWidget() {
             m.id === assistantMsg.id && m.content === ''
               ? {
                   ...m,
-                  content: t('fallbackMessage'),
+                  content: t('fallbackMessage', { phone: businessContact.primary.display }),
                 }
               : m,
           ),

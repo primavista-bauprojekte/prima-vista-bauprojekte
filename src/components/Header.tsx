@@ -1,3 +1,5 @@
+import { businessContact } from '../../shared/contact';
+import ContactNumbers from './ContactNumbers';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
@@ -93,6 +95,11 @@ export default function Header() {
 
   return (
     <>
+      <div className="pv-contact-bar">
+        <a href={businessContact.primary.telHref}>
+          <span>{t('contact.primary')}:</span> <strong>{businessContact.primary.display}</strong>
+        </a>
+      </div>
       <header className={`pv-header${open ? ' is-menu-open' : ''}`}>
         <div className="pv-header__inner">
           <Link
@@ -289,6 +296,7 @@ export default function Header() {
         </nav>
 
         <div className="pv-mobile-menu__foot">
+          <ContactNumbers />
           <div className="pv-mobile-menu__controls">
             <LanguageSwitcher className="pv-lang--mobile pv-mobile-menu__lang" />
             <button

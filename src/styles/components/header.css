@@ -208,7 +208,7 @@
   justify-content: space-between;
   opacity: 0;
   pointer-events: none;
-  overflow: hidden;
+  overflow-y: auto;
   overscroll-behavior: contain;
   transition: opacity 220ms var(--pv-ease-out);
 }
@@ -223,7 +223,7 @@
 
 /* Numbered nav list */
 .pv-mobile-menu__nav {
-  flex: 1 1 auto;
+  flex: 1 0 auto;
   min-height: 0;
   display: flex;
   align-items: center;
@@ -926,3 +926,22 @@
     padding: 6px 12px;
   }
 }
+
+/* Keep the primary call action visible without crowding the existing navigation. */
+.pv-contact-bar {
+  background: var(--pv-cream-paper);
+  color: var(--pv-ink);
+  border-bottom: 1px solid rgba(20, 19, 18, .10);
+  padding: 0 var(--pv-shell-gutter);
+  text-align: center;
+  font-size: 13px;
+}
+.pv-contact-bar a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  min-height: 44px;
+}
+.pv-mobile-menu__foot > .pv-phone-contacts { margin-bottom: 20px; }

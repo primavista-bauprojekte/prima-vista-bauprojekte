@@ -1,3 +1,5 @@
+import { businessContact } from '../../shared/contact';
+import ContactNumbers from './ContactNumbers';
 import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Link } from '../i18n/Link';
@@ -60,7 +62,7 @@ export default function Footer() {
                     <br />
                     {t('footer.countryDe')}
                     <br />
-                    <a href="tel:+4915789818308">+49 1578 98 18 308</a>
+                    <a href={businessContact.primary.telHref}>{businessContact.primary.display}</a>
                   </span>
                 </div>
               </li>
@@ -76,7 +78,7 @@ export default function Footer() {
                     <br />
                     {t('footer.countryCh')}
                     <br />
-                    <a href="tel:+41782659332">+41 78 265 93 32</a>
+                    <a href={businessContact.swiss.telHref}>{businessContact.swiss.display}</a>
                   </span>
                 </div>
               </li>
@@ -133,15 +135,15 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a className="pv-footer__contact-link" href="tel:+4915789818308">
+                <div className="pv-footer__contact-link pv-footer__contact-link--static">
                   <span className="pv-footer__contact-icon pv-footer__contact-icon--text" aria-hidden="true">DE</span>
-                  <span>+49 1578 98 18 308</span>
-                </a>
+                  <ContactNumbers />
+                </div>
               </li>
               <li>
-                <a className="pv-footer__contact-link" href="tel:+41782659332">
+                <a className="pv-footer__contact-link" href={businessContact.swiss.telHref}>
                   <span className="pv-footer__contact-icon pv-footer__contact-icon--text" aria-hidden="true">CH</span>
-                  <span>+41 78 265 93 32</span>
+                  <span>{businessContact.swiss.display}</span>
                 </a>
               </li>
               <li>

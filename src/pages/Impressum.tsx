@@ -1,3 +1,5 @@
+import { businessContact } from '../../shared/contact';
+import ContactNumbers from '../components/ContactNumbers';
 import { useTranslation } from 'react-i18next';
 import PageIntro from '../components/common/PageIntro';
 import '../styles/pages/impressum.css';
@@ -49,7 +51,7 @@ export default function Impressum() {
         meta={[
           { label: t('impressum.metaSeat'), value: 'Frankfurt am Main' },
           { label: t('impressum.metaContact'), value: 'info@primavista-bauprojekte.com' },
-          { label: t('impressum.metaPhone'), value: '+49 (0)1578 9818308' },
+          { label: t('common:contact.primary'), value: <a href={businessContact.primary.telHref}>{businessContact.primary.display}</a> },
           { label: t('impressum.metaVat'), value: 'DE 358812805' },
         ]}
       />
@@ -66,7 +68,7 @@ export default function Impressum() {
             <div className="impressum-page__contact">
               <h2>{t('impressum.contactHeading')}</h2>
               <p>
-                {t('impressum.phoneLabel')}: <a href="tel:+4915789818308">+49 (0)1578 9818308</a>
+                <ContactNumbers />
                 <br />
                 {t('impressum.emailLabel')}: <a href="mailto:info@primavista-bauprojekte.com">info@primavista-bauprojekte.com</a>
               </p>
