@@ -83,8 +83,10 @@
 }
 .pv-nav__list {
   display: flex;
-  flex: 0 1 auto;
-  min-width: 0;
+  /* Never shrink below label width — nowrap links were overflowing under the
+     search field and getting painted over (esp. KONTAKT). */
+  flex: 0 0 auto;
+  min-width: max-content;
   gap: clamp(16px, 1.35vw, 28px);
   list-style: none;
   margin: 0;
@@ -718,8 +720,9 @@
 
 /* Crowded desktop widths: the inline field collides with the nav links, so
    collapse the search to its icon here too. The open field expands in place
-   and the links step aside while it's open. */
-@media (min-width: 1081px) and (max-width: 1440px) and (hover: hover) {
+   and the links step aside while it's open. Cap matches the constrained
+   shell (~1680) so German labels + CTA still clear the field. */
+@media (min-width: 1081px) and (max-width: 1680px) and (hover: hover) {
   .pv-search--header .pv-search__trigger {
     display: inline-flex;
     width: 34px;
