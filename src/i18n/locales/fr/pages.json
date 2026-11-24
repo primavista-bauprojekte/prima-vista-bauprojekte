@@ -253,5 +253,214 @@
       "pellet": { "title": "Poêle à granulés", "desc": "Les granulés de bois comme alternative neutre en CO₂ — en chauffage central avec ballon tampon ou en appareil de chauffage d'appoint dans le séjour." },
       "thermen": { "title": "Poêle de sauna Prestige", "subtitle": "Chaudières et poêles", "desc": "Poêle de sauna de luxe d'une puissance de 9 kW, échantillonnage des matériaux et système de conduit de fumée optionnel — pour saunas privés et espaces wellness." }
     }
+  },
+  "material": {
+    "metaTitle": "Matériaux et catalogues – showroom en ligne",
+    "metaDescription": "Carrelage, sols, portes, salle de bain, éclairage et façades : feuilletez les catalogues en ligne et envoyez vos favoris à Prima Vista.",
+    "crumbLabel": "Univers des matériaux",
+    "title": "Découvrir les <em>matériaux.</em><br/>À toute heure.",
+    "lede": "Carrelage, sols, portes, salle de bain et éclairage de nos collections — feuilletez les catalogues ici, sans vous déplacer.",
+    "meta": [
+      {
+        "label": "Univers",
+        "value": "6 catégories"
+      },
+      {
+        "label": "Catalogues",
+        "value": "7 documents"
+      },
+      {
+        "label": "Fabricants",
+        "value": "5 collections"
+      },
+      {
+        "label": "Échantillons",
+        "value": "Apportés au rendez-vous"
+      }
+    ],
+    "overviewEyebrow": "Univers des matériaux",
+    "overviewTitle": "Notre showroom. <em>Votre galerie de matériaux.</em>",
+    "overviewLede": "Des matériaux et des collections choisis pour votre projet — à feuilleter tranquillement en ligne. Les échantillons réels, nous les apportons au rendez-vous gratuit.",
+    "badgeCatalogueOne": "1 catalogue",
+    "badgeCatalogueMany": "{{count}} catalogues",
+    "badgePartnerOne": "1 collection en ligne",
+    "badgePartnerMany": "{{count}} collections en ligne",
+    "openCategory": "Voir {{name}}",
+    "backToCategories": "Tous les univers",
+    "filterAria": "Univers des matériaux",
+    "subfilterAria": "Sous-catégories",
+    "allCatalogues": "Tous les catalogues",
+    "allSubcategories": "Tous",
+    "catalogueLabel": "Catalogue · {{count}} pages",
+    "pageShort": "p. {{page}}",
+    "openCatalogue": "Feuilleter le catalogue",
+    "openPdf": "Ouvrir le PDF",
+    "openCatalogueAria": "Feuilleter {{name}}",
+    "partnersHeading": "Collections en ligne de nos fabricants",
+    "partnerLabel": "Fabricant",
+    "partnerCta": "Voir la collection",
+    "sampleNote": "Nous apportons volontiers des échantillons de ces collections au rendez-vous gratuit.",
+    "emptyCategory": "Nous rassemblons les documents de cet univers. Contactez-nous et nous vous envoyons les collections correspondantes.",
+    "categories": {
+      "fliesen": {
+        "name": "Carrelage et pierre naturelle",
+        "desc": "Grès cérame, grands formats, pierre naturelle et mosaïque."
+      },
+      "boeden": {
+        "name": "Sols et design bois",
+        "desc": "Parquet, vinyle, stratifié, bardages bois, terrasses et façades."
+      },
+      "bad": {
+        "name": "Salle de bain et sanitaire",
+        "desc": "Vasques, WC, douches, robinetterie et meubles de salle de bain."
+      },
+      "tueren": {
+        "name": "Portes et meubles",
+        "desc": "Portes intérieures, façades de meubles et aménagements sur mesure."
+      },
+      "licht": {
+        "name": "Lumière et éclairage",
+        "desc": "Spots encastrés, profilés LED et éclairage indirect."
+      },
+      "fenster": {
+        "name": "Fenêtres et façade",
+        "desc": "Fenêtres, façades vitrées et parements de façade."
+      }
+    },
+    "sub": {
+      "vinyl": {
+        "name": "Vinyle / sol design",
+        "desc": "Sols vinyle et design aspect bois, pierre et béton, résistants et faciles d’entretien."
+      },
+      "parkett": {
+        "name": "Parquet / bois massif",
+        "desc": "Parquet et lames larges en bois véritable, du parquet à bâtons rompus."
+      }
+    },
+    "catalogues": {
+      "boden": {
+        "name": "Vinyle / sol design 2026/27",
+        "desc": "Sols vinyle et design aspect bois, pierre et béton, de la lame large aux bâtons rompus.",
+        "chapters": {
+          "chevron": "Chevron",
+          "herringbone": "Bâtons rompus",
+          "primeOak": "Prime Oak",
+          "stone": "Aspect pierre et béton",
+          "technical": "Données techniques"
+        }
+      },
+      "moebelTueren": {
+        "name": "Meubles et portes 2026",
+        "desc": "Façades de meubles, aménagements et portes intérieures en laque, bois et couleur.",
+        "chapters": {
+          "kollektion": "Collection",
+          "moebel": "Meubles et aménagements",
+          "kuechen": "Cuisines",
+          "tueren": "Portes",
+          "glas": "Verre"
+        }
+      },
+      "weisslack": {
+        "name": "Portes laquées blanches",
+        "desc": "Portes intérieures laquées blanches : Standard, Elegance et Royal, avec vitrages, ferrures et huisseries.",
+        "chapters": {
+          "standard": "Standard",
+          "elegance": "Elegance",
+          "royal": "Royal",
+          "glas": "Vitrages et ferrures"
+        }
+      },
+      "bad": {
+        "name": "Équipement de salle de bain",
+        "desc": "Parois de douche, douchettes, armoires de toilette, miroirs lumineux et sèche-serviettes.",
+        "chapters": {
+          "basic": "Basic",
+          "classic": "Classic",
+          "premium": "Premium",
+          "technical": "Données techniques"
+        }
+      },
+      "fassaden": {
+        "name": "Façades 2026",
+        "desc": "Parements de façade en HPL, bois thermotraité, LINAX, bambou et BPC.",
+        "chapters": {
+          "hpl": "HPL",
+          "thermoholz": "Bois thermotraité",
+          "linax": "LINAX",
+          "bambus": "Bambou",
+          "bpc": "BPC"
+        }
+      },
+      "fensterTueren": {
+        "name": "Fenêtres, portes et plus",
+        "desc": "Fenêtres en PVC, aluminium et bois, ainsi que portes d’entrée et protection solaire.",
+        "chapters": {
+          "pvc": "Fenêtres PVC",
+          "aluminium": "Aluminium",
+          "holz": "Fenêtres bois",
+          "haustueren": "Portes d’entrée"
+        }
+      },
+      "parkett": {
+        "name": "Parquet 2027",
+        "desc": "Parquet et sols bois : lame large, bâtons rompus et chevron en de nombreux coloris et sélections.",
+        "chapters": {
+          "verlegemuster": "Motifs de pose",
+          "oberflaechen": "Finitions",
+          "farben": "Couleurs et ambiances",
+          "sortierungen": "Sélections",
+          "formate": "Formats"
+        }
+      }
+    },
+    "partners": {
+      "atlasConcorde": {
+        "origin": "Italie",
+        "desc": "Grès cérame italien aspect marbre, pierre, bois et béton, également en grands formats."
+      },
+      "porcelanosa": {
+        "origin": "Espagne",
+        "desc": "Carrelage et grands formats aspect pierre, marbre et bois, ainsi qu’équipements de bain et de cuisine."
+      },
+      "kgm": {
+        "origin": "Allemagne",
+        "desc": "Plinthes en bois massif, plaqué et MDF, profilés techniques et panneaux acoustiques en placage véritable."
+      },
+      "reisser": {
+        "origin": "Allemagne",
+        "desc": "Céramique sanitaire, robinetterie, douches, baignoires, meubles et armoires de toilette, y compris pour salles de bain accessibles."
+      },
+      "livingDesign": {
+        "origin": "Showroom Francfort",
+        "desc": "Luminaires, papiers peints et tissus exclusifs ainsi que du mobilier italien, avec un showroom au centre de Francfort."
+      }
+    },
+    "reader": {
+      "eyebrow": "Showroom · catalogue",
+      "loading": "Chargement du catalogue …",
+      "error": "Le catalogue n’a pas pu être chargé. Veuillez ouvrir le PDF directement.",
+      "close": "Fermer le catalogue",
+      "prev": "Page précédente",
+      "next": "Page suivante",
+      "zoomAria": "Zoom",
+      "zoomIn": "Agrandir",
+      "zoomOut": "Réduire",
+      "zoomReset": "Réinitialiser le zoom",
+      "jump": "Aller à la page",
+      "pageOf": "Page {{page}} / {{total}}",
+      "hint": "Flèches pour tourner les pages · + et − pour zoomer",
+      "sample": "Demander des échantillons",
+      "pdf": "PDF"
+    },
+    "cta": {
+      "eyebrow": "Quelque chose vous plaît ?",
+      "title": "Envoyez-nous <em>vos favoris.</em>",
+      "lede": "Les échantillons réels, nous les apportons au rendez-vous gratuit.",
+      "whatsapp": "Envoyer par WhatsApp",
+      "contact": "Demander une offre",
+      "whatsappText": "Bonjour Prima Vista, j’ai parcouru votre showroom en ligne et je m’intéresse à :",
+      "contactMessage": "Je m’intéresse à des matériaux du showroom en ligne :",
+      "sourceLabel": "Matériaux"
+    }
   }
 }

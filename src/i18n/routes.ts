@@ -67,6 +67,7 @@ const SLUGS: Record<string, SlugMap> = {
   'komplett-pakete': { en: 'complete-packages', it: 'pacchetti-completi', fr: 'forfaits-complets' },
   'projekte': { en: 'projects', it: 'progetti', fr: 'projets' },
   'projekte/:slug': { en: 'projects/:slug', it: 'progetti/:slug', fr: 'projets/:slug' },
+  'materialien': { en: 'materials', it: 'materiali', fr: 'materiaux' },
   'blog': { en: 'magazine', it: 'magazine', fr: 'magazine' },
   'blog/:slug': { en: 'magazine/:slug', it: 'magazine/:slug', fr: 'magazine/:slug' },
   'kontakt': { en: 'contact', it: 'contatto', fr: 'contact' },

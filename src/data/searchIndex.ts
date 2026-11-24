@@ -29,6 +29,7 @@ export const SEARCH_INDEX: SearchEntry[] = [
   { path: '/gewerke', group: 'page', label: 'common:nav.trades' },
   { path: '/heizmethoden', group: 'page', label: 'common:nav.heating' },
   { path: '/projekte', group: 'page', label: 'common:nav.projects' },
+  { path: '/materialien', group: 'page', label: 'common:nav.materials', lead: 'pages:material.lede' },
   { path: '/blog', group: 'page', label: 'common:nav.magazine' },
   { path: '/kalkulator', group: 'page', label: 'common:nav.calculator' },
   { path: '/kontakt', group: 'page', label: 'common:nav.contact' },

@@ -10,5 +10,5 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["vite.config.ts", "server/**/*", "netlify/functions/**/*"]
+  "include": ["vite.config.ts", "server/**/*", "netlify/functions/**/*", "netlify/edge-functions/**/*"]
 }
