@@ -26,6 +26,7 @@ type MetaSource = { metaTitle: string; lede: string };
 type PageCatalog = {
   calc: Record<keyof typeof dePages.calc, MetaSource>;
   trade: Record<keyof typeof dePages.trade, MetaSource>;
+  material: { metaTitle: string; metaDescription: string };
 };
 type BlogCatalog = { pageTitle: string; masthead: { sub: string } };
 type CalcMetaKey = keyof PageCatalog['calc'];
@@ -67,6 +68,7 @@ const CALC_ROUTE_KEYS = {
 } as const satisfies Record<string, CalcMetaKey>;
 
 const MISSING_DE_ROUTE_META_KEYS = [
+  '/materialien',
   '/badsanierung-gaeste-wc',
   '/heizkoerper',
   '/heizstraenge',
@@ -86,7 +88,10 @@ function metaFromBlog(blog: BlogCatalog): RouteMeta {
 }
 
 function localizedServiceMeta(pages: PageCatalog, blog: BlogCatalog): Record<string, RouteMeta> {
-  const meta: Record<string, RouteMeta> = { '/blog': metaFromBlog(blog) };
+  const meta: Record<string, RouteMeta> = {
+    '/blog': metaFromBlog(blog),
+    '/materialien': { title: pages.material.metaTitle, description: pages.material.metaDescription },
+  };
 
   for (const [path, key] of Object.entries(TRADE_ROUTE_KEYS) as Array<[string, TradeMetaKey]>) {
     meta[path] = metaFromEntry(pages.trade[key]);

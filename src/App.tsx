@@ -28,6 +28,7 @@ const Zaeune = lazy(() => import('./pages/Zaeune'));
 const KomplettPakete = lazy(() => import('./pages/KomplettPakete'));
 const Projekte = lazy(() => import('./pages/Projekte'));
 const ProjektDetail = lazy(() => import('./pages/ProjektDetail'));
+const Materialien = lazy(() => import('./pages/Materialien'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogDetail = lazy(() => import('./pages/BlogDetail'));
 const Kontakt = lazy(() => import('./pages/Kontakt'));
@@ -145,6 +146,7 @@ const PAGES: Record<string, ReactElement> = {
   'komplett-pakete': <KomplettPakete />,
   'projekte': <Projekte />,
   'projekte/:slug': <ProjektDetail />,
+  'materialien': <Materialien />,
   'blog': <Blog />,
   'blog/:slug': <BlogDetail />,
   'kontakt': <Kontakt />,

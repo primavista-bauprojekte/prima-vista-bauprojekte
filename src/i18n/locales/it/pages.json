@@ -253,5 +253,214 @@
       "pellet": { "title": "Stufa a pellet", "desc": "Pellet di legno come alternativa a impatto zero di CO₂ — come riscaldamento centralizzato con serbatoio di accumulo o come stufa per singolo ambiente nella zona giorno." },
       "thermen": { "title": "Stufa per sauna Prestige", "subtitle": "Termali e stufe", "desc": "Stufa per sauna di lusso da 9 kW, campionatura dei materiali e sistema di canna fumaria opzionale — per saune private e aree wellness." }
     }
+  },
+  "material": {
+    "metaTitle": "Materiali e cataloghi – showroom online",
+    "metaDescription": "Piastrelle, pavimenti, porte, bagno, luce e facciate: sfoglia i cataloghi online e invia i tuoi preferiti a Prima Vista.",
+    "crumbLabel": "Mondo dei materiali",
+    "title": "Scoprire i <em>materiali.</em><br/>A ogni ora.",
+    "lede": "Piastrelle, pavimenti, porte, bagno e luce dalle nostre collezioni — sfoglia i cataloghi qui, senza spostarti.",
+    "meta": [
+      {
+        "label": "Aree",
+        "value": "6 categorie"
+      },
+      {
+        "label": "Cataloghi",
+        "value": "7 documenti"
+      },
+      {
+        "label": "Produttori",
+        "value": "5 collezioni"
+      },
+      {
+        "label": "Campioni",
+        "value": "Portati all’appuntamento"
+      }
+    ],
+    "overviewEyebrow": "Mondo dei materiali",
+    "overviewTitle": "Il nostro showroom. <em>La vostra galleria.</em>",
+    "overviewLede": "Materiali e collezioni selezionati per il vostro progetto — da sfogliare online con calma. I campioni reali li portiamo all’appuntamento gratuito.",
+    "badgeCatalogueOne": "1 catalogo",
+    "badgeCatalogueMany": "{{count}} cataloghi",
+    "badgePartnerOne": "1 collezione online",
+    "badgePartnerMany": "{{count}} collezioni online",
+    "openCategory": "Vedi {{name}}",
+    "backToCategories": "Tutte le aree",
+    "filterAria": "Aree dei materiali",
+    "subfilterAria": "Sottocategorie",
+    "allCatalogues": "Tutti i cataloghi",
+    "allSubcategories": "Tutti",
+    "catalogueLabel": "Catalogo · {{count}} pagine",
+    "pageShort": "p. {{page}}",
+    "openCatalogue": "Sfoglia il catalogo",
+    "openPdf": "Apri il PDF",
+    "openCatalogueAria": "Sfoglia {{name}}",
+    "partnersHeading": "Collezioni online dei nostri produttori",
+    "partnerLabel": "Produttore",
+    "partnerCta": "Vedi la collezione",
+    "sampleNote": "Volentieri portiamo i campioni di queste collezioni all’appuntamento gratuito.",
+    "emptyCategory": "Stiamo preparando la documentazione per quest’area. Contattateci e vi inviamo le collezioni adatte.",
+    "categories": {
+      "fliesen": {
+        "name": "Piastrelle e pietra naturale",
+        "desc": "Gres porcellanato, grandi formati, pietra naturale e mosaico."
+      },
+      "boeden": {
+        "name": "Pavimenti e design in legno",
+        "desc": "Parquet, vinile, laminato, rivestimenti in legno, terrazze e facciate."
+      },
+      "bad": {
+        "name": "Bagno e sanitari",
+        "desc": "Lavabi, WC, docce, rubinetteria e mobili da bagno."
+      },
+      "tueren": {
+        "name": "Porte e mobili",
+        "desc": "Porte interne, ante e arredi su misura."
+      },
+      "licht": {
+        "name": "Luce e illuminazione",
+        "desc": "Faretti da incasso, profili LED e luce indiretta."
+      },
+      "fenster": {
+        "name": "Finestre e facciata",
+        "desc": "Finestre, vetrate e superfici di facciata."
+      }
+    },
+    "sub": {
+      "vinyl": {
+        "name": "Vinile / pavimento design",
+        "desc": "Pavimenti in vinile e design con effetto legno, pietra e cemento, resistenti e facili da pulire."
+      },
+      "parkett": {
+        "name": "Parquet / legno naturale",
+        "desc": "Parquet e tavole in legno vero, dal listoncino alla spina di pesce."
+      }
+    },
+    "catalogues": {
+      "boden": {
+        "name": "Vinile / pavimento design 2026/27",
+        "desc": "Pavimenti in vinile e design con effetto legno, pietra e cemento, dalla tavola larga alla spina di pesce.",
+        "chapters": {
+          "chevron": "Chevron",
+          "herringbone": "Spina di pesce",
+          "primeOak": "Prime Oak",
+          "stone": "Effetto pietra e cemento",
+          "technical": "Dati tecnici"
+        }
+      },
+      "moebelTueren": {
+        "name": "Mobili e porte 2026",
+        "desc": "Ante, arredi su misura e porte interne in laccato, legno e colore.",
+        "chapters": {
+          "kollektion": "Collezione",
+          "moebel": "Mobili e arredi su misura",
+          "kuechen": "Cucine",
+          "tueren": "Porte",
+          "glas": "Vetro"
+        }
+      },
+      "weisslack": {
+        "name": "Porte laccate bianche",
+        "desc": "Porte interne laccate bianche: Standard, Elegance e Royal, con vetri, ferramenta e telai.",
+        "chapters": {
+          "standard": "Standard",
+          "elegance": "Elegance",
+          "royal": "Royal",
+          "glas": "Vetri e ferramenta"
+        }
+      },
+      "bad": {
+        "name": "Arredo bagno",
+        "desc": "Box doccia, soffioni, specchiere contenitore, specchi luminosi e radiatori da bagno.",
+        "chapters": {
+          "basic": "Basic",
+          "classic": "Classic",
+          "premium": "Premium",
+          "technical": "Dati tecnici"
+        }
+      },
+      "fassaden": {
+        "name": "Facciate 2026",
+        "desc": "Rivestimenti di facciata in HPL, legno termotrattato, LINAX, bambù e BPC.",
+        "chapters": {
+          "hpl": "HPL",
+          "thermoholz": "Legno termotrattato",
+          "linax": "LINAX",
+          "bambus": "Bambù",
+          "bpc": "BPC"
+        }
+      },
+      "fensterTueren": {
+        "name": "Finestre, porte e altro",
+        "desc": "Finestre in PVC, alluminio e legno, oltre a porte d’ingresso e protezione solare.",
+        "chapters": {
+          "pvc": "Finestre in PVC",
+          "aluminium": "Alluminio",
+          "holz": "Finestre in legno",
+          "haustueren": "Porte d’ingresso"
+        }
+      },
+      "parkett": {
+        "name": "Parquet 2027",
+        "desc": "Parquet e pavimenti in legno: tavola larga, spina di pesce e chevron in molti colori e selezioni.",
+        "chapters": {
+          "verlegemuster": "Schemi di posa",
+          "oberflaechen": "Finiture",
+          "farben": "Colori e idee",
+          "sortierungen": "Selezioni",
+          "formate": "Formati"
+        }
+      }
+    },
+    "partners": {
+      "atlasConcorde": {
+        "origin": "Italia",
+        "desc": "Gres porcellanato italiano con effetto marmo, pietra, legno e cemento, anche in grandi formati."
+      },
+      "porcelanosa": {
+        "origin": "Spagna",
+        "desc": "Piastrelle e grandi formati con effetto pietra, marmo e legno, oltre ad arredi per bagno e cucina."
+      },
+      "kgm": {
+        "origin": "Germania",
+        "desc": "Battiscopa in legno massello, impiallacciato e MDF, profili funzionali e pannelli acustici in vero legno."
+      },
+      "reisser": {
+        "origin": "Germania",
+        "desc": "Ceramiche sanitarie, rubinetteria, docce, vasche, mobili e specchiere, anche per bagni accessibili."
+      },
+      "livingDesign": {
+        "origin": "Showroom Francoforte",
+        "desc": "Lampade, carte da parati e tessuti esclusivi oltre a mobili italiani, con showroom nel centro di Francoforte."
+      }
+    },
+    "reader": {
+      "eyebrow": "Showroom · catalogo",
+      "loading": "Caricamento del catalogo …",
+      "error": "Non è stato possibile caricare il catalogo. Aprite il PDF direttamente.",
+      "close": "Chiudi il catalogo",
+      "prev": "Pagina precedente",
+      "next": "Pagina successiva",
+      "zoomAria": "Zoom",
+      "zoomIn": "Ingrandisci",
+      "zoomOut": "Riduci",
+      "zoomReset": "Reimposta lo zoom",
+      "jump": "Vai alla pagina",
+      "pageOf": "Pagina {{page}} / {{total}}",
+      "hint": "Frecce per sfogliare · + e − per lo zoom",
+      "sample": "Richiedi i campioni",
+      "pdf": "PDF"
+    },
+    "cta": {
+      "eyebrow": "Avete trovato qualcosa?",
+      "title": "Inviateci <em>i vostri preferiti.</em>",
+      "lede": "I campioni reali li portiamo all’appuntamento gratuito.",
+      "whatsapp": "Invia via WhatsApp",
+      "contact": "Richiedi un preventivo",
+      "whatsappText": "Buongiorno Prima Vista, ho sfogliato lo showroom online e mi interessa:",
+      "contactMessage": "Mi interessano materiali dello showroom online:",
+      "sourceLabel": "Materiali"
+    }
   }
 }

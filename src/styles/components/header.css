@@ -719,7 +719,7 @@
 /* Crowded desktop widths: the inline field collides with the nav links, so
    collapse the search to its icon here too. The open field expands in place
    and the links step aside while it's open. */
-@media (min-width: 1081px) and (max-width: 1440px) and (hover: hover) {
+@media (min-width: 1081px) and (max-width: 1760px) and (hover: hover) {
   .pv-search--header .pv-search__trigger {
     display: inline-flex;
     width: 34px;

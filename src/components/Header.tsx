@@ -30,6 +30,7 @@ const SERVICE_ITEMS: NavItem[] = [
 // the footer uses).
 const TRAILING_NAV: NavItem[] = [
   { to: '/projekte', labelKey: 'nav.projects' },
+  { to: '/materialien', labelKey: 'nav.materials' },
   { to: '/blog', labelKey: 'nav.magazine' },
   { to: '/#ueber-uns', labelKey: 'nav.about' },
   { to: '/kontakt', labelKey: 'nav.contact' },

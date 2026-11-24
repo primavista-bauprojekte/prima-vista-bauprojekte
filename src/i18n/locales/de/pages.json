@@ -253,5 +253,214 @@
       "pellet": { "title": "Pelletofen", "desc": "Holzpellets als CO₂-neutrale Alternative — als Zentralheizung mit Pufferspeicher oder als Einzelraum-Heizgerät im Wohnbereich." },
       "thermen": { "title": "Saunaofen Prestige", "subtitle": "Thermen & Öfen", "desc": "Luxus-Saunaofen mit 9 kW Leistung, Materialbemusterung und optionalem Kaminsystem — für private Saunen und Wellnessbereiche." }
     }
+  },
+  "material": {
+    "metaTitle": "Materialien & Kataloge – Online-Showroom",
+    "metaDescription": "Fliesen, Böden, Türen, Bad, Licht und Fassade: Kataloge online durchblättern und Favoriten an Prima Vista senden.",
+    "crumbLabel": "Materialwelt",
+    "title": "Materialien <em>entdecken.</em><br/>Rund um die Uhr.",
+    "lede": "Fliesen, Böden, Türen, Bad und Licht aus unseren Kollektionen — Kataloge direkt hier durchblättern, ganz ohne Anfahrt.",
+    "meta": [
+      {
+        "label": "Bereiche",
+        "value": "6 Kategorien"
+      },
+      {
+        "label": "Kataloge",
+        "value": "7 Dokumente"
+      },
+      {
+        "label": "Hersteller",
+        "value": "5 Kollektionen"
+      },
+      {
+        "label": "Muster",
+        "value": "Zum Termin dabei"
+      }
+    ],
+    "overviewEyebrow": "Materialwelt",
+    "overviewTitle": "Unser Showroom. <em>Ihre Materialgalerie.</em>",
+    "overviewLede": "Ausgewählte Materialien und Kollektionen für Ihr Projekt — online in Ruhe durchblättern. Die echten Muster bringen wir zum kostenlosen Termin mit.",
+    "badgeCatalogueOne": "1 Katalog",
+    "badgeCatalogueMany": "{{count}} Kataloge",
+    "badgePartnerOne": "1 Online-Kollektion",
+    "badgePartnerMany": "{{count}} Online-Kollektionen",
+    "openCategory": "{{name}} ansehen",
+    "backToCategories": "Alle Bereiche",
+    "filterAria": "Materialbereiche",
+    "subfilterAria": "Unterkategorien",
+    "allCatalogues": "Alle Kataloge",
+    "allSubcategories": "Alle",
+    "catalogueLabel": "Katalog · {{count}} Seiten",
+    "pageShort": "S. {{page}}",
+    "openCatalogue": "Katalog blättern",
+    "openPdf": "PDF öffnen",
+    "openCatalogueAria": "{{name}} durchblättern",
+    "partnersHeading": "Online-Kollektionen unserer Hersteller",
+    "partnerLabel": "Hersteller",
+    "partnerCta": "Kollektion ansehen",
+    "sampleNote": "Muster der Kollektionen bringen wir gerne zum kostenlosen Termin mit.",
+    "emptyCategory": "Für diesen Bereich stellen wir die Unterlagen gerade zusammen. Sprechen Sie uns an — wir senden Ihnen die passenden Kollektionen zu.",
+    "categories": {
+      "fliesen": {
+        "name": "Fliesen & Naturstein",
+        "desc": "Feinsteinzeug, Großformate, Naturstein und Mosaik."
+      },
+      "boeden": {
+        "name": "Bodenbeläge & Holzdesign",
+        "desc": "Parkett, Vinyl, Laminat, Holzverkleidungen, Terrassen und Fassaden."
+      },
+      "bad": {
+        "name": "Bad & Sanitär",
+        "desc": "Waschtische, WCs, Duschen, Armaturen und Badmöbel."
+      },
+      "tueren": {
+        "name": "Türen & Möbel",
+        "desc": "Innentüren, Möbelfronten und Einbauten nach Maß."
+      },
+      "licht": {
+        "name": "Licht & Beleuchtung",
+        "desc": "Einbaustrahler, LED-Profile und indirekte Lichtkonzepte."
+      },
+      "fenster": {
+        "name": "Fenster & Fassade",
+        "desc": "Fenster, Glasfronten und Fassadenoberflächen."
+      }
+    },
+    "sub": {
+      "vinyl": {
+        "name": "Vinyl / Designboden",
+        "desc": "Vinyl- und Designböden in Holz-, Stein- und Betonoptik, robust und pflegeleicht."
+      },
+      "parkett": {
+        "name": "Parkett / Naturholz",
+        "desc": "Parkett und Landhausdielen aus echtem Holz, von Stabparkett bis Fischgrät."
+      }
+    },
+    "catalogues": {
+      "boden": {
+        "name": "Vinyl / Designboden 2026/27",
+        "desc": "Vinyl- und Designböden in Holz-, Stein- und Betonoptik, von Landhausdiele bis Fischgrät.",
+        "chapters": {
+          "chevron": "Chevron",
+          "herringbone": "Fischgrät",
+          "primeOak": "Prime Oak",
+          "stone": "Stein- & Betonoptik",
+          "technical": "Technische Daten"
+        }
+      },
+      "moebelTueren": {
+        "name": "Möbel & Türen 2026",
+        "desc": "Möbelfronten, Einbauten und Innentüren in Lack, Holz und Farbe.",
+        "chapters": {
+          "kollektion": "Kollektion",
+          "moebel": "Möbel & Einbauten",
+          "kuechen": "Küchen",
+          "tueren": "Türen",
+          "glas": "Glas"
+        }
+      },
+      "weisslack": {
+        "name": "Weißlacktüren",
+        "desc": "Innentüren in Weißlack: Standard, Elegance und Royal, mit Gläsern, Beschlägen und Zargen.",
+        "chapters": {
+          "standard": "Standard",
+          "elegance": "Elegance",
+          "royal": "Royal",
+          "glas": "Gläser & Beschläge"
+        }
+      },
+      "bad": {
+        "name": "Bad-Ausstattung",
+        "desc": "Duschabtrennungen, Brausen, Spiegelschränke, Lichtspiegel und Badheizkörper.",
+        "chapters": {
+          "basic": "Basic",
+          "classic": "Classic",
+          "premium": "Premium",
+          "technical": "Technische Daten"
+        }
+      },
+      "fassaden": {
+        "name": "Fassaden 2026",
+        "desc": "Fassadenverkleidungen aus HPL, Thermoholz, LINAX, Bambus und BPC.",
+        "chapters": {
+          "hpl": "HPL",
+          "thermoholz": "Thermoholz",
+          "linax": "LINAX",
+          "bambus": "Bambus",
+          "bpc": "BPC"
+        }
+      },
+      "fensterTueren": {
+        "name": "Fenster, Türen & mehr",
+        "desc": "Fenster aus PVC, Aluminium und Holz, dazu Haustüren und Sonnenschutz.",
+        "chapters": {
+          "pvc": "PVC-Fenster",
+          "aluminium": "Aluminium",
+          "holz": "Holzfenster",
+          "haustueren": "Haustüren"
+        }
+      },
+      "parkett": {
+        "name": "Parkett 2027",
+        "desc": "Parkett und Holzböden: Landhausdiele, Fischgrät und Chevron in vielen Farben und Sortierungen.",
+        "chapters": {
+          "verlegemuster": "Verlegemuster",
+          "oberflaechen": "Oberflächen",
+          "farben": "Farben & Raumideen",
+          "sortierungen": "Sortierungen",
+          "formate": "Formate"
+        }
+      }
+    },
+    "partners": {
+      "atlasConcorde": {
+        "origin": "Italien",
+        "desc": "Italienisches Feinsteinzeug in Marmor-, Stein-, Holz- und Betonoptik, auch in Großformaten."
+      },
+      "porcelanosa": {
+        "origin": "Spanien",
+        "desc": "Fliesen und Großformate in Stein-, Marmor- und Holzoptik, dazu Bad- und Küchenausstattung."
+      },
+      "kgm": {
+        "origin": "Deutschland",
+        "desc": "Sockelleisten aus Massivholz, Furnier und MDF, Funktionsleisten und Akustikpaneele in Echtholzfurnier."
+      },
+      "reisser": {
+        "origin": "Deutschland",
+        "desc": "Badkeramik, Armaturen, Duschen, Wannen, Badmöbel und Spiegelschränke, auch für barrierefreie Bäder."
+      },
+      "livingDesign": {
+        "origin": "Showroom Frankfurt",
+        "desc": "Exklusive Leuchten, Tapeten und Stoffe sowie italienische Möbel, mit Showroom in der Frankfurter Innenstadt."
+      }
+    },
+    "reader": {
+      "eyebrow": "Showroom · Katalog",
+      "loading": "Katalog wird geladen …",
+      "error": "Der Katalog konnte nicht geladen werden. Bitte öffnen Sie das PDF direkt.",
+      "close": "Katalog schließen",
+      "prev": "Vorherige Seite",
+      "next": "Nächste Seite",
+      "zoomAria": "Zoom",
+      "zoomIn": "Vergrößern",
+      "zoomOut": "Verkleinern",
+      "zoomReset": "Zoom zurücksetzen",
+      "jump": "Zu Seite springen",
+      "pageOf": "Seite {{page}} / {{total}}",
+      "hint": "Pfeiltasten zum Blättern · + und − zum Zoomen",
+      "sample": "Muster anfragen",
+      "pdf": "PDF"
+    },
+    "cta": {
+      "eyebrow": "Etwas gefunden?",
+      "title": "Schicken Sie uns <em>Ihre Favoriten.</em>",
+      "lede": "Die echten Muster bringen wir zum kostenlosen Termin mit.",
+      "whatsapp": "Per WhatsApp senden",
+      "contact": "Angebot anfragen",
+      "whatsappText": "Hallo Prima Vista, ich habe im Online-Showroom geblättert und interessiere mich für:",
+      "contactMessage": "Ich interessiere mich für Materialien aus dem Online-Showroom:",
+      "sourceLabel": "Materialien"
+    }
   }
 }

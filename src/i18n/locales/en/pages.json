@@ -253,5 +253,214 @@
       "pellet": { "title": "Pellet stove", "desc": "Wood pellets as a CO₂-neutral alternative — as central heating with a buffer tank or as a single-room heater in the living area." },
       "thermen": { "title": "Prestige sauna heater", "subtitle": "Heaters & stoves", "desc": "A luxury 9 kW sauna heater, material sampling and an optional flue system — for private saunas and wellness areas." }
     }
+  },
+  "material": {
+    "metaTitle": "Materials & catalogues – online showroom",
+    "metaDescription": "Tiles, floors, doors, bathrooms, lighting and façades: browse the catalogues online and send your favourites to Prima Vista.",
+    "crumbLabel": "Material world",
+    "title": "Discover <em>materials.</em><br/>Around the clock.",
+    "lede": "Tiles, floors, doors, bathrooms and lighting from our collections — browse the catalogues right here, without travelling to a showroom.",
+    "meta": [
+      {
+        "label": "Areas",
+        "value": "6 categories"
+      },
+      {
+        "label": "Catalogues",
+        "value": "7 documents"
+      },
+      {
+        "label": "Manufacturers",
+        "value": "5 collections"
+      },
+      {
+        "label": "Samples",
+        "value": "Brought to your appointment"
+      }
+    ],
+    "overviewEyebrow": "Material world",
+    "overviewTitle": "Our showroom. <em>Your material gallery.</em>",
+    "overviewLede": "Selected materials and collections for your project — browse them online at your own pace. We bring the real samples to your free appointment.",
+    "badgeCatalogueOne": "1 catalogue",
+    "badgeCatalogueMany": "{{count}} catalogues",
+    "badgePartnerOne": "1 online collection",
+    "badgePartnerMany": "{{count}} online collections",
+    "openCategory": "View {{name}}",
+    "backToCategories": "All areas",
+    "filterAria": "Material areas",
+    "subfilterAria": "Sub-categories",
+    "allCatalogues": "All catalogues",
+    "allSubcategories": "All",
+    "catalogueLabel": "Catalogue · {{count}} pages",
+    "pageShort": "p. {{page}}",
+    "openCatalogue": "Browse catalogue",
+    "openPdf": "Open PDF",
+    "openCatalogueAria": "Browse {{name}}",
+    "partnersHeading": "Online collections from our manufacturers",
+    "partnerLabel": "Manufacturer",
+    "partnerCta": "View collection",
+    "sampleNote": "We are glad to bring samples of these collections to your free appointment.",
+    "emptyCategory": "We are putting the documents for this area together. Get in touch and we will send you the matching collections.",
+    "categories": {
+      "fliesen": {
+        "name": "Tiles & natural stone",
+        "desc": "Porcelain stoneware, large formats, natural stone and mosaic."
+      },
+      "boeden": {
+        "name": "Flooring & wood design",
+        "desc": "Parquet, vinyl, laminate, wood cladding, decking and façades."
+      },
+      "bad": {
+        "name": "Bathroom & sanitary",
+        "desc": "Washbasins, WCs, showers, taps and bathroom furniture."
+      },
+      "tueren": {
+        "name": "Doors & furniture",
+        "desc": "Interior doors, furniture fronts and made-to-measure built-ins."
+      },
+      "licht": {
+        "name": "Light & lighting",
+        "desc": "Recessed spots, LED profiles and indirect lighting concepts."
+      },
+      "fenster": {
+        "name": "Windows & façade",
+        "desc": "Windows, glass fronts and façade surfaces."
+      }
+    },
+    "sub": {
+      "vinyl": {
+        "name": "Vinyl / design flooring",
+        "desc": "Vinyl and design floors in wood, stone and concrete looks — hard-wearing and easy to care for."
+      },
+      "parkett": {
+        "name": "Parquet / solid wood",
+        "desc": "Parquet and wide planks in real wood, from strip parquet to herringbone."
+      }
+    },
+    "catalogues": {
+      "boden": {
+        "name": "Vinyl / design flooring 2026/27",
+        "desc": "Vinyl and design floors in wood, stone and concrete looks, from wide planks to herringbone.",
+        "chapters": {
+          "chevron": "Chevron",
+          "herringbone": "Herringbone",
+          "primeOak": "Prime Oak",
+          "stone": "Stone & concrete looks",
+          "technical": "Technical data"
+        }
+      },
+      "moebelTueren": {
+        "name": "Furniture & doors 2026",
+        "desc": "Furniture fronts, built-ins and interior doors in lacquer, wood and colour.",
+        "chapters": {
+          "kollektion": "Collection",
+          "moebel": "Furniture & built-ins",
+          "kuechen": "Kitchens",
+          "tueren": "Doors",
+          "glas": "Glass"
+        }
+      },
+      "weisslack": {
+        "name": "White lacquer doors",
+        "desc": "Interior doors in white lacquer: Standard, Elegance and Royal, with glass, hardware and frames.",
+        "chapters": {
+          "standard": "Standard",
+          "elegance": "Elegance",
+          "royal": "Royal",
+          "glas": "Glass & hardware"
+        }
+      },
+      "bad": {
+        "name": "Bathroom equipment",
+        "desc": "Shower enclosures, showers, mirror cabinets, illuminated mirrors and bathroom radiators.",
+        "chapters": {
+          "basic": "Basic",
+          "classic": "Classic",
+          "premium": "Premium",
+          "technical": "Technical data"
+        }
+      },
+      "fassaden": {
+        "name": "Façades 2026",
+        "desc": "Façade cladding in HPL, thermowood, LINAX, bamboo and BPC.",
+        "chapters": {
+          "hpl": "HPL",
+          "thermoholz": "Thermowood",
+          "linax": "LINAX",
+          "bambus": "Bamboo",
+          "bpc": "BPC"
+        }
+      },
+      "fensterTueren": {
+        "name": "Windows, doors & more",
+        "desc": "Windows in PVC, aluminium and timber, plus front doors and solar shading.",
+        "chapters": {
+          "pvc": "PVC windows",
+          "aluminium": "Aluminium",
+          "holz": "Timber windows",
+          "haustueren": "Front doors"
+        }
+      },
+      "parkett": {
+        "name": "Parquet 2027",
+        "desc": "Parquet and wood floors: wide planks, herringbone and chevron in many colours and grades.",
+        "chapters": {
+          "verlegemuster": "Laying patterns",
+          "oberflaechen": "Surfaces",
+          "farben": "Colours & room ideas",
+          "sortierungen": "Grades",
+          "formate": "Formats"
+        }
+      }
+    },
+    "partners": {
+      "atlasConcorde": {
+        "origin": "Italy",
+        "desc": "Italian porcelain stoneware in marble, stone, wood and concrete looks, including large formats."
+      },
+      "porcelanosa": {
+        "origin": "Spain",
+        "desc": "Tiles and large formats in stone, marble and wood looks, plus bathroom and kitchen fittings."
+      },
+      "kgm": {
+        "origin": "Germany",
+        "desc": "Skirting boards in solid wood, veneer and MDF, functional profiles and acoustic panels in real wood veneer."
+      },
+      "reisser": {
+        "origin": "Germany",
+        "desc": "Bathroom ceramics, taps, showers, tubs, bathroom furniture and mirror cabinets, including accessible bathrooms."
+      },
+      "livingDesign": {
+        "origin": "Frankfurt showroom",
+        "desc": "Exclusive lighting, wallpapers and fabrics as well as Italian furniture, with a showroom in central Frankfurt."
+      }
+    },
+    "reader": {
+      "eyebrow": "Showroom · catalogue",
+      "loading": "Loading catalogue …",
+      "error": "The catalogue could not be loaded. Please open the PDF directly.",
+      "close": "Close catalogue",
+      "prev": "Previous page",
+      "next": "Next page",
+      "zoomAria": "Zoom",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "zoomReset": "Reset zoom",
+      "jump": "Jump to page",
+      "pageOf": "Page {{page}} / {{total}}",
+      "hint": "Arrow keys to turn pages · + and − to zoom",
+      "sample": "Request samples",
+      "pdf": "PDF"
+    },
+    "cta": {
+      "eyebrow": "Found something?",
+      "title": "Send us <em>your favourites.</em>",
+      "lede": "We bring the real samples to your free appointment.",
+      "whatsapp": "Send via WhatsApp",
+      "contact": "Request a quote",
+      "whatsappText": "Hello Prima Vista, I have been browsing your online showroom and I am interested in:",
+      "contactMessage": "I am interested in materials from the online showroom:",
+      "sourceLabel": "Materials"
+    }
   }
 }

@@ -1,4 +1,8 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
+import { createReadStream } from 'node:fs';
+import { Readable } from 'node:stream';
+import { pipeline } from 'node:stream/promises';
+import type { ReadableStream as WebReadableStream } from 'node:stream/web';
 import { defineConfig } from 'vitest/config';
 import { loadEnv, type Plugin, type ViteDevServer } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -209,6 +213,38 @@ function mailDevPlugin(): Plugin {
   };
 }
 
+/** Dev-only: runs the /kataloge edge function, streaming its response. */
+function catalogueDevPlugin(): Plugin {
+  return {
+    name: 'pv-catalogue-dev',
+    configureServer(server) {
+      server.middlewares.use(async (req, res, next) => {
+        // Vite refuses to serve module imports from /public; pdf.js's worker
+        // imports its decoder from there.
+        const decoder = req.url?.match(/^\/assets\/(pdfjs-[\d.]+\/openjpeg_nowasm_fallback\.js)/);
+        if (decoder) {
+          res.setHeader('content-type', 'text/javascript');
+          createReadStream(`public/assets/${decoder[1]}`).on('error', next).pipe(res);
+          return;
+        }
+        if (!req.url?.startsWith('/kataloge/')) return next();
+        try {
+          const mod = await server.ssrLoadModule('/netlify/edge-functions/kataloge.ts');
+          const response: Response = await mod.default(await toWebRequest(req));
+          res.statusCode = response.status;
+          response.headers.forEach((value, key) => res.setHeader(key, value));
+          if (!response.body) return void res.end();
+          await pipeline(Readable.fromWeb(response.body as WebReadableStream), res);
+        } catch (err) {
+          // Aborted range requests are routine; only report real failures.
+          if (res.headersSent) return void res.destroy();
+          sendJson(res, 502, { error: err instanceof Error ? err.message : String(err) });
+        }
+      });
+    },
+  };
+}
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   for (const key of ['ANTHROPIC_API_KEY', 'RESEND_API_KEY', 'MAIL_FROM', 'MAIL_TO_OFFICE', 'MAIL_DRY_RUN', 'MONGODB_URI', 'MONGODB_DB', 'JWT_SECRET', 'GOOGLE_CLIENT_ID', 'ADMIN_GOOGLE_EMAIL', 'GOOGLE_CALENDAR_ID', 'GOOGLE_SA_EMAIL', 'GOOGLE_SA_KEY', 'INSTAGRAM_ACCESS_TOKEN', 'INSTAGRAM_USERNAME', 'INSTAGRAM_POST_LIMIT', 'INSTAGRAM_API_VERSION'] as const) {
@@ -220,6 +256,7 @@ export default defineConfig(({ mode }) => {
       chatDevPlugin(),
       mailDevPlugin(),
       blogDevPlugin(),
+      catalogueDevPlugin(),
       VitePWA({
         registerType: 'autoUpdate',
         injectRegister: 'auto',
@@ -272,10 +309,11 @@ export default defineConfig(({ mode }) => {
           // match them adds a second, hash-revisioned entry for the same URL,
           // which makes Workbox throw `add-to-cache-list-conflicting-entries`
           // and abort SW install. Ignore them here so each appears only once.
-          globIgnores: ['**/assets/icons/icon-*.png'],
+          // The catalogue decoder is only needed inside the reader.
+          globIgnores: ['**/assets/icons/icon-*.png', '**/assets/pdfjs-*/**', '**/assets/CatalogueReader-*.js'],
           navigateFallback: '/index.html',
           // Don't fall back to index.html for API or function URLs.
-          navigateFallbackDenylist: [/^\/api\//, /^\/\.netlify\//],
+          navigateFallbackDenylist: [/^\/api\//, /^\/\.netlify\//, /^\/kataloge\//],
           runtimeCaching: [
             {
               // Must precede the generic image rule — Workbox matches in order.
