@@ -435,6 +435,17 @@
         "desc": "Luminaires, papiers peints et tissus exclusifs ainsi que du mobilier italien, avec un showroom au centre de Francfort."
       }
     },
+    "list": {
+      "title": "Votre sélection",
+      "lede": "Vos pages enregistrées. Envoyez-nous votre sélection : nous apporterons les échantillons correspondants au rendez-vous.",
+      "empty": "Aucune page enregistrée. Ouvrez un catalogue et touchez ♡ pour enregistrer une page.",
+      "save": "Enregistrer la page",
+      "saved": "Enregistrée",
+      "remove": "Retirer {{name}}",
+      "clear": "Vider la liste",
+      "whatsapp": "Envoyer la sélection par WhatsApp",
+      "privacy": "Votre sélection reste dans ce navigateur jusqu’à sa suppression. Nous ne la recevons que lorsque vous l’envoyez."
+    },
     "reader": {
       "eyebrow": "Showroom · catalogue",
       "loading": "Chargement du catalogue …",

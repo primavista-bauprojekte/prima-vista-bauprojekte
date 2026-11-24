@@ -435,6 +435,17 @@
         "desc": "Lampade, carte da parati e tessuti esclusivi oltre a mobili italiani, con showroom nel centro di Francoforte."
       }
     },
+    "list": {
+      "title": "La Sua selezione",
+      "lede": "Le pagine salvate. Ci invii la selezione: porteremo i campioni adatti all’appuntamento.",
+      "empty": "Nessuna pagina salvata. Apra un catalogo e tocchi ♡ per salvare una pagina.",
+      "save": "Salva pagina",
+      "saved": "Salvata",
+      "remove": "Rimuovi {{name}}",
+      "clear": "Svuota la lista",
+      "whatsapp": "Invia la selezione via WhatsApp",
+      "privacy": "La selezione resta in questo browser finché non la elimina. La riceviamo solo quando la invia."
+    },
     "reader": {
       "eyebrow": "Showroom · catalogo",
       "loading": "Caricamento del catalogo …",

@@ -6,6 +6,7 @@ import { GlobalWorkerOptions, getDocument, version, type PDFDocumentProxy } from
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import { businessContact } from '../../../shared/contact';
 import type { MaterialCatalogue } from '../../data/materialien';
+import { MERKLISTE_LIMIT, isSaved, type SavedPage } from '../../data/merkliste';
 
 GlobalWorkerOptions.workerSrc = workerUrl;
 
@@ -18,11 +19,38 @@ const WINDOW = 3;
 /** Spreads need this much room; below it the book shows single pages. */
 const SPREAD_MIN_WIDTH = 900;
 
-type Props = { catalogue: MaterialCatalogue; initialPage: number; onClose: () => void };
+type Props = {
+  catalogue: MaterialCatalogue;
+  initialPage: number;
+  onClose: () => void;
+  saved: SavedPage[];
+  onToggleSaved: (entry: SavedPage) => void;
+};
 type Layout = { width: number; height: number; spread: boolean };
 type Rendered = { scale: number; url: string | null };
 
-export default function CatalogueReader({ catalogue, initialPage, onClose }: Props) {
+const THUMB_WIDTH = 220;
+
+/** Small JPEG of already rendered pages, side by side for a spread. */
+function makeThumb(pages: HTMLElement[]): string | undefined {
+  const images = pages
+    .map((page) => page.querySelector('img'))
+    .filter((image): image is HTMLImageElement => Boolean(image?.complete && image.naturalWidth));
+  if (images.length === 0) return undefined;
+  const each = Math.round(THUMB_WIDTH / images.length);
+  const heights = images.map((image) => Math.round((each * image.naturalHeight) / image.naturalWidth));
+  const canvas = document.createElement('canvas');
+  canvas.width = each * images.length;
+  canvas.height = Math.max(...heights);
+  const context = canvas.getContext('2d');
+  if (!context) return undefined;
+  context.fillStyle = '#fff';
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  images.forEach((image, index) => context.drawImage(image, index * each, 0, each, heights[index]));
+  return canvas.toDataURL('image/jpeg', 0.72);
+}
+
+export default function CatalogueReader({ catalogue, initialPage, onClose, saved, onToggleSaved }: Props) {
   const { t } = useTranslation('pages');
   const dialogRef = useRef<HTMLDialogElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -259,6 +287,16 @@ export default function CatalogueReader({ catalogue, initialPage, onClose }: Pro
   )}`;
   const pdfHref = `${catalogue.file}#page=${page}`;
   const ready = Boolean(doc && layout);
+  const marked = isSaved(saved, catalogue.key, page);
+  const toggleMark = () => {
+    const shown = isPair ? [page, page + 1] : [page];
+    onToggleSaved({
+      catalogue: catalogue.key,
+      page,
+      ...(isPair ? { to: page + 1 } : {}),
+      thumb: marked ? undefined : makeThumb(shown.map((number) => pagesRef.current[number - 1])),
+    });
+  };
 
   return createPortal(
     <dialog
@@ -279,6 +317,16 @@ export default function CatalogueReader({ catalogue, initialPage, onClose }: Pro
             <button type="button" onClick={() => setZoom(1)} disabled={!ready} aria-label={`${t('material.reader.zoomReset')} (${zoom * 100} %)`}>{zoom * 100} %</button>
             <button type="button" onClick={() => zoomBy(ZOOM_STEP)} disabled={!ready || zoom >= MAX_ZOOM} aria-label={t('material.reader.zoomIn')}>+</button>
           </div>
+          <button
+            type="button"
+            className={`mat-reader__mark${marked ? ' is-marked' : ''}`}
+            onClick={toggleMark}
+            disabled={!ready || (!marked && saved.length >= MERKLISTE_LIMIT)}
+            aria-pressed={marked}
+            aria-label={t('material.list.save')}
+          >
+            {marked ? '♥' : '♡'} <span>{marked ? t('material.list.saved') : t('material.list.save')}</span>
+          </button>
           <a className="mat-reader__action" href={sampleHref} target="_blank" rel="noopener noreferrer">{t('material.reader.sample')}</a>
           <a className="mat-reader__action" href={pdfHref} target="_blank" rel="noopener noreferrer">{t('material.reader.pdf')}</a>
           <button type="button" className="mat-reader__close" onClick={onClose} aria-label={t('material.reader.close')}>×</button>
