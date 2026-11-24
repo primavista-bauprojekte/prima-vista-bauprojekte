@@ -94,8 +94,9 @@ export default function CatalogueReader({ catalogue, initialPage, onClose, saved
       // Fetch only the byte ranges that are read; the files run to 38 MB.
       disableAutoFetch: true,
       disableStream: true,
-      // The default 64 KB needs hundreds of round trips before the first page.
-      rangeChunkSize: 1024 * 1024,
+      // The files keep their index together at the end and each page's data
+      // together, so small blocks suffice (materialien.test.ts guards that).
+      rangeChunkSize: 128 * 1024,
       // The site's CSP forbids compiling WebAssembly, so JPEG 2000 images (the
       // furniture catalogue) use pdf.js's plain-JS decoder.
       useWasm: false,
