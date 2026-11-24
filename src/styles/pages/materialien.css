@@ -188,6 +188,19 @@
 .mat :is(a, button):focus-visible,
 .mat-whatsapp a:focus-visible { outline: 2px solid var(--pv-copper); outline-offset: 3px; }
 
+/* Merkliste */
+.mat-list { padding: clamp(48px, 6vw, 80px) 0; background: var(--pv-cream-soft); scroll-margin-top: var(--pv-header-height); }
+.mat-list .mat-head { margin-bottom: 28px; }
+.mat-list .mat-head span { color: var(--pv-copper-ink); }
+.mat-list__items { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 18px; margin: 0 0 28px; padding: 0; list-style: none; }
+.mat-list__items li { position: relative; }
+.mat-list__open { display: flex; flex-direction: column; gap: 4px; width: 100%; height: 100%; padding: 10px; border: 1px solid rgba(130, 97, 64, .35); background: var(--pv-cream-paper); color: var(--pv-text-on-light); font: inherit; font-size: 13px; text-align: left; cursor: pointer; }
+.mat-list__open:hover { border-color: var(--pv-copper); }
+.mat-list__open img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; margin-bottom: 6px; background: #221f1d; }
+.mat-list__open span { color: var(--pv-text-on-light-muted); }
+.mat-list__remove { position: absolute; top: 4px; right: 4px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(20, 19, 18, .78); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; }
+.mat-list :is(a, button):focus-visible { outline: 2px solid var(--pv-copper); outline-offset: 3px; }
+
 /* Reader — always dark, independent of the site theme */
 .mat-reader {
   width: 100vw;
@@ -240,6 +253,8 @@
 .mat-reader :is(button, a, select, input):focus-visible { outline: 2px solid #c89a6a; outline-offset: 2px; }
 .mat-reader button.mat-reader__close,
 .mat-reader__foot button { font-size: 22px; }
+.mat-reader button.mat-reader__mark { gap: 6px; }
+.mat-reader button.mat-reader__mark.is-marked { border-color: #c89a6a; color: #e3b98a; }
 .mat-reader__stage { flex: 1; display: grid; min-height: 0; overflow: auto; }
 .mat-reader__sizer { margin: auto; }
 .mat-reader__book { transform-origin: 0 0; }
@@ -273,6 +288,8 @@
   .mat-reader__foot select,
   .mat-reader__hint { display: none; }
   .mat-reader__action { padding-inline: 8px; font-size: 12px; }
+  .mat-reader__mark span { display: none; }
+  .mat-reader__tools { gap: 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .mat-tile img { transition: none; }

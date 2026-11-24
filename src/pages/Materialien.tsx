@@ -6,7 +6,9 @@ import EndCtaLocal from '../components/common/EndCtaLocal';
 import PageIntro from '../components/common/PageIntro';
 import CategoryDetail from '../components/materialien/CategoryDetail';
 import CategoryGrid from '../components/materialien/CategoryGrid';
+import Merkliste from '../components/materialien/Merkliste';
 import { MATERIAL_CATEGORIES, categoryFromHash, type MaterialCatalogue } from '../data/materialien';
+import { useMerkliste } from '../hooks/useMerkliste';
 import { usePageTitle } from '../hooks/usePageTitle';
 import '../styles/pages/materialien.css';
 
@@ -19,6 +21,7 @@ export default function Materialien() {
   const category = categoryFromHash(hash);
   const sectionRef = useRef<HTMLElement>(null);
   const previous = useRef<typeof category>(null);
+  const { list, toggle, clear } = useMerkliste();
   const [reading, setReading] = useState<{ catalogue: MaterialCatalogue; page: number } | null>(null);
 
   usePageTitle(t('material.metaTitle'), t('material.metaDescription'));
@@ -57,14 +60,18 @@ export default function Materialien() {
         {category ? <CategoryDetail key={category} category={category} onOpen={openCatalogue} /> : <CategoryGrid />}
       </section>
 
-      <section className="mat-whatsapp">
-        <div className="mat-shell">
-          <p>{t('material.cta.lede')}</p>
-          <a className="mat-btn mat-btn--solid" href={whatsappHref} target="_blank" rel="noopener noreferrer">
-            {t('material.cta.whatsapp')}
-          </a>
-        </div>
-      </section>
+      <Merkliste list={list} onToggle={toggle} onClear={clear} onOpen={openCatalogue} />
+
+      {list.length === 0 && (
+        <section className="mat-whatsapp">
+          <div className="mat-shell">
+            <p>{t('material.cta.lede')}</p>
+            <a className="mat-btn mat-btn--solid" href={whatsappHref} target="_blank" rel="noopener noreferrer">
+              {t('material.cta.whatsapp')}
+            </a>
+          </div>
+        </section>
+      )}
 
       <EndCtaLocal
         eyebrow={t('material.cta.eyebrow')}
@@ -84,6 +91,8 @@ export default function Materialien() {
             catalogue={reading.catalogue}
             initialPage={reading.page}
             onClose={closeCatalogue}
+            saved={list}
+            onToggleSaved={toggle}
           />
         </Suspense>
       )}

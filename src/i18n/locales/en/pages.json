@@ -435,6 +435,17 @@
         "desc": "Exclusive lighting, wallpapers and fabrics as well as Italian furniture, with a showroom in central Frankfurt."
       }
     },
+    "list": {
+      "title": "Your shortlist",
+      "lede": "Your saved pages. Send us your selection and we will bring matching samples to the appointment.",
+      "empty": "Nothing saved yet. Open a catalogue and tap ♡ to save a page.",
+      "save": "Save page",
+      "saved": "Saved",
+      "remove": "Remove {{name}}",
+      "clear": "Clear list",
+      "whatsapp": "Send shortlist via WhatsApp",
+      "privacy": "Your shortlist stays in this browser until you delete it. We only receive it when you send it."
+    },
     "reader": {
       "eyebrow": "Showroom · catalogue",
       "loading": "Loading catalogue …",

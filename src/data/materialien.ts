@@ -9,9 +9,8 @@
 // appear on the page itself; the furniture catalogue in particular is laid out
 // as spreads, so the two differ.
 
-/** Where the catalogue PDFs are served from. An edge function keeps them
- *  same-origin, which pdf.js requires — see netlify/edge-functions/kataloge.ts,
- *  whose allowlist must name every file below. */
+/** Catalogue PDFs live in public/kataloge. They must stay same-origin: the
+ *  site's CSP only lets pdf.js fetch from 'self'. */
 export const CATALOGUE_BASE = '/kataloge';
 
 const IMG = '/assets/img/materialien';
@@ -118,7 +117,7 @@ export const MATERIAL_PARTNERS: MaterialPartner[] = [
 export const MATERIAL_CATALOGUES: MaterialCatalogue[] = [
   {
     key: 'boden',
-    file: `${CATALOGUE_BASE}/2026/10/Katalog_Boden_2026_2027_Prima_Vista_CH_final.pdf`,
+    file: `${CATALOGUE_BASE}/Katalog_Boden_2026_2027_Prima_Vista_CH_final.pdf`,
     cover: `${IMG}/cover-boden-designboden.webp`,
     pages: 128,
     categories: ['boeden', 'vinyl'],
@@ -132,7 +131,7 @@ export const MATERIAL_CATALOGUES: MaterialCatalogue[] = [
   },
   {
     key: 'moebelTueren',
-    file: `${CATALOGUE_BASE}/2026/10/Prima-Vista-Katalog-2026.pdf`,
+    file: `${CATALOGUE_BASE}/Prima-Vista-Katalog-2026.pdf`,
     cover: `${IMG}/cover-moebel-tueren.webp`,
     pages: 63,
     categories: ['tueren'],
@@ -146,7 +145,7 @@ export const MATERIAL_CATALOGUES: MaterialCatalogue[] = [
   },
   {
     key: 'weisslack',
-    file: `${CATALOGUE_BASE}/2026/11/Prima_Vista_Tuerenkatalog.pdf`,
+    file: `${CATALOGUE_BASE}/Prima_Vista_Tuerenkatalog.pdf`,
     cover: `${IMG}/cover-weisslacktueren.webp`,
     pages: 63,
     categories: ['tueren'],
@@ -159,7 +158,7 @@ export const MATERIAL_CATALOGUES: MaterialCatalogue[] = [
   },
   {
     key: 'bad',
-    file: `${CATALOGUE_BASE}/2026/11/PrimaVista_Bauprojekte_Catalogo.pdf`,
+    file: `${CATALOGUE_BASE}/PrimaVista_Bauprojekte_Catalogo.pdf`,
     cover: `${IMG}/cover-bad-ausstattung.webp`,
     pages: 89,
     categories: ['bad'],
@@ -172,7 +171,7 @@ export const MATERIAL_CATALOGUES: MaterialCatalogue[] = [
   },
   {
     key: 'fassaden',
-    file: `${CATALOGUE_BASE}/2026/11/Prima-Vista-Fassadenkatalog-2026.pdf`,
+    file: `${CATALOGUE_BASE}/Prima-Vista-Fassadenkatalog-2026.pdf`,
     cover: `${IMG}/cover-fassaden.webp`,
     pages: 52,
     categories: ['boeden', 'fenster'],
@@ -186,7 +185,7 @@ export const MATERIAL_CATALOGUES: MaterialCatalogue[] = [
   },
   {
     key: 'fensterTueren',
-    file: `${CATALOGUE_BASE}/2026/11/PrimaVista_Fenster_Tueren_Katalog_DE_40_Seiten_Web.pdf`,
+    file: `${CATALOGUE_BASE}/PrimaVista_Fenster_Tueren_Katalog_DE_40_Seiten_Web.pdf`,
     cover: `${IMG}/cover-fenster-tueren.webp`,
     pages: 40,
     categories: ['fenster'],
@@ -199,7 +198,7 @@ export const MATERIAL_CATALOGUES: MaterialCatalogue[] = [
   },
   {
     key: 'parkett',
-    file: `${CATALOGUE_BASE}/2026/11/PrimaVista_Parkett_Katalog_DE_Kompakt_Web.pdf`,
+    file: `${CATALOGUE_BASE}/PrimaVista_Parkett_Katalog_DE_Kompakt_Web.pdf`,
     cover: `${IMG}/cover-parkett.webp`,
     pages: 40,
     categories: ['boeden', 'parkett'],

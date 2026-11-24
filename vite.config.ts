@@ -1,8 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { createReadStream } from 'node:fs';
-import { Readable } from 'node:stream';
-import { pipeline } from 'node:stream/promises';
-import type { ReadableStream as WebReadableStream } from 'node:stream/web';
 import { defineConfig } from 'vitest/config';
 import { loadEnv, type Plugin, type ViteDevServer } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -213,12 +210,12 @@ function mailDevPlugin(): Plugin {
   };
 }
 
-/** Dev-only: runs the /kataloge edge function, streaming its response. */
-function catalogueDevPlugin(): Plugin {
+/** Dev-only: serves the pdf.js image decoder the catalogue reader needs. */
+function pdfDecoderDevPlugin(): Plugin {
   return {
-    name: 'pv-catalogue-dev',
+    name: 'pv-pdf-decoder-dev',
     configureServer(server) {
-      server.middlewares.use(async (req, res, next) => {
+      server.middlewares.use((req, res, next) => {
         // Vite refuses to serve module imports from /public; pdf.js's worker
         // imports its decoder from there.
         const decoder = req.url?.match(/^\/assets\/(pdfjs-[\d.]+\/openjpeg_nowasm_fallback\.js)/);
@@ -227,19 +224,7 @@ function catalogueDevPlugin(): Plugin {
           createReadStream(`public/assets/${decoder[1]}`).on('error', next).pipe(res);
           return;
         }
-        if (!req.url?.startsWith('/kataloge/')) return next();
-        try {
-          const mod = await server.ssrLoadModule('/netlify/edge-functions/kataloge.ts');
-          const response: Response = await mod.default(await toWebRequest(req));
-          res.statusCode = response.status;
-          response.headers.forEach((value, key) => res.setHeader(key, value));
-          if (!response.body) return void res.end();
-          await pipeline(Readable.fromWeb(response.body as WebReadableStream), res);
-        } catch (err) {
-          // Aborted range requests are routine; only report real failures.
-          if (res.headersSent) return void res.destroy();
-          sendJson(res, 502, { error: err instanceof Error ? err.message : String(err) });
-        }
+        next();
       });
     },
   };
@@ -256,7 +241,7 @@ export default defineConfig(({ mode }) => {
       chatDevPlugin(),
       mailDevPlugin(),
       blogDevPlugin(),
-      catalogueDevPlugin(),
+      pdfDecoderDevPlugin(),
       VitePWA({
         registerType: 'autoUpdate',
         injectRegister: 'auto',

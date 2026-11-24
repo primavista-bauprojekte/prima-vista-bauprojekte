@@ -435,6 +435,17 @@
         "desc": "Exklusive Leuchten, Tapeten und Stoffe sowie italienische Möbel, mit Showroom in der Frankfurter Innenstadt."
       }
     },
+    "list": {
+      "title": "Ihre Merkliste",
+      "lede": "Ihre gespeicherten Seiten. Schicken Sie uns die Auswahl, wir bringen passende Muster zum Termin mit.",
+      "empty": "Noch nichts gemerkt. Öffnen Sie einen Katalog und tippen Sie auf ♡, um eine Seite zu speichern.",
+      "save": "Seite merken",
+      "saved": "Gemerkt",
+      "remove": "{{name}} entfernen",
+      "clear": "Liste leeren",
+      "whatsapp": "Merkliste per WhatsApp senden",
+      "privacy": "Ihre Merkliste bleibt in diesem Browser gespeichert, bis Sie sie löschen. Wir erhalten sie erst, wenn Sie sie senden."
+    },
     "reader": {
       "eyebrow": "Showroom · Katalog",
       "loading": "Katalog wird geladen …",
