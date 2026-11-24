@@ -2,10 +2,18 @@ import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from 're
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { PageFlip } from 'page-flip';
-import { GlobalWorkerOptions, getDocument, version, type PDFDocumentProxy } from 'pdfjs-dist';
+import {
+  GlobalWorkerOptions,
+  PDFDataRangeTransport,
+  getDocument,
+  version,
+  type PDFDocumentLoadingTask,
+  type PDFDocumentProxy,
+} from 'pdfjs-dist';
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import { businessContact } from '../../../shared/contact';
 import type { MaterialCatalogue } from '../../data/materialien';
+import { RANGE_CHUNK, openCatalogue, type CatalogueRanges } from './catalogueRanges';
 import { MERKLISTE_LIMIT, isSaved, type SavedPage } from '../../data/merkliste';
 
 GlobalWorkerOptions.workerSrc = workerUrl;
@@ -28,6 +36,35 @@ type Props = {
 };
 type Layout = { width: number; height: number; spread: boolean };
 type Rendered = { scale: number; url: string | null };
+
+class RangeTransport extends PDFDataRangeTransport {
+  #source: Extract<CatalogueRanges, { length: number }>;
+  #signal: AbortSignal;
+  #onError: () => void;
+
+  constructor(source: Extract<CatalogueRanges, { length: number }>, signal: AbortSignal, onError: () => void) {
+    super(source.length, null);
+    this.#source = source;
+    this.#signal = signal;
+    this.#onError = onError;
+  }
+
+  override requestDataRange(begin: number, end: number) {
+    const read = () => this.#source.read(begin, end);
+    // One retry, so a dropped request does not end the reading session.
+    read()
+      .catch((error: unknown) => {
+        if (this.#signal.aborted) throw error;
+        return read();
+      })
+      .then((bytes) => {
+        if (!this.#signal.aborted) this.onDataRange(begin, bytes);
+      })
+      .catch(() => {
+        if (!this.#signal.aborted) this.#onError();
+      });
+  }
+}
 
 const THUMB_WIDTH = 220;
 
@@ -89,21 +126,34 @@ export default function CatalogueReader({ catalogue, initialPage, onClose, saved
 
   useEffect(() => {
     let cancelled = false;
-    const task = getDocument({
-      url: catalogue.file,
-      // Fetch only the byte ranges that are read; the files run to 38 MB.
-      disableAutoFetch: true,
-      disableStream: true,
-      // The default 64 KB needs hundreds of round trips before the first page.
-      rangeChunkSize: 1024 * 1024,
-      // The site's CSP forbids compiling WebAssembly, so JPEG 2000 images (the
-      // furniture catalogue) use pdf.js's plain-JS decoder.
-      useWasm: false,
-      // Versioned because /assets is cached as immutable.
-      wasmUrl: `/assets/pdfjs-${version}/`,
-    });
+    let task: PDFDocumentLoadingTask | null = null;
+    const controller = new AbortController();
+    const fail = () => {
+      if (cancelled) return;
+      setFailed(true);
+      controller.abort();
+      void task?.destroy();
+    };
     (async () => {
       try {
+        const source = await openCatalogue(catalogue.file, controller.signal);
+        if (cancelled) return;
+        task = getDocument({
+          ...('data' in source
+            ? { data: source.data }
+            : { range: new RangeTransport(source, controller.signal, fail) }),
+          // Fetch only the byte ranges that are read; the files run to 30 MB.
+          disableAutoFetch: true,
+          disableStream: true,
+          // The files keep their index together at the end and each page's data
+          // together, so small blocks suffice (materialien.test.ts guards that).
+          rangeChunkSize: RANGE_CHUNK,
+          // The site's CSP forbids compiling WebAssembly, so JPEG 2000 images (the
+          // furniture catalogue) use pdf.js's plain-JS decoder.
+          useWasm: false,
+          // Versioned because /assets is cached as immutable.
+          wasmUrl: `/assets/pdfjs-${version}/`,
+        });
         const pdf = await task.promise;
         // Covers can be single pages in an otherwise spread-format document.
         const sample = await pdf.getPage(Math.min(2, pdf.numPages));
@@ -112,12 +162,13 @@ export default function CatalogueReader({ catalogue, initialPage, onClose, saved
         setRatio(width / height);
         setDoc(pdf);
       } catch {
-        if (!cancelled) setFailed(true);
+        fail();
       }
     })();
     return () => {
       cancelled = true;
-      void task.destroy();
+      controller.abort();
+      void task?.destroy();
     };
   }, [catalogue.file]);
 

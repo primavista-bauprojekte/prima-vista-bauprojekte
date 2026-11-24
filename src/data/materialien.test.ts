@@ -61,6 +61,15 @@ describe('material showroom data', () => {
       .toBe(readFileSync(`node_modules/pdfjs-dist/wasm/${file}`, 'utf8'));
   });
 
+  it('keeps every catalogue index together at the end (scripts/optimise-catalogues.py)', () => {
+    for (const { file } of MATERIAL_CATALOGUES) {
+      const pdf = readFileSync(`public${file}`);
+      const first = pdf.indexOf('/Type/ObjStm');
+      expect(first, file).toBeGreaterThan(-1);
+      expect(pdf.length - first, file).toBeLessThan(128 * 1024);
+    }
+  });
+
   it('parses category hashes and ignores anything else', () => {
     expect(categoryFromHash('#kategorie=boeden')).toBe('boeden');
     expect(categoryFromHash('#kategorie=%E0%A4%A')).toBeNull();
