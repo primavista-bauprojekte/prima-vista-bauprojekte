@@ -8,7 +8,17 @@ export type CatalogueRanges =
   | { length: number; read: (begin: number, end: number) => Promise<Uint8Array> };
 
 async function fetchBlock(url: string, range: string, signal: AbortSignal): Promise<Block | Uint8Array> {
-  const response = await fetch(url, { headers: { Range: `bytes=${range}` }, signal });
+  const request = { headers: { Range: `bytes=${range}` }, signal };
+  // Browsers cut ranges out of a cached full download (the PDF button), which is
+  // compressed. The query gives ranges a cache entry of their own.
+  let response = await fetch(`${url}?ranges`, request);
+  if (response.status === 206 && response.headers.has('Content-Encoding')) {
+    void response.body?.cancel().catch(() => undefined);
+    response = await fetch(`${url}?ranges`, { ...request, cache: 'no-store' });
+    if (response.status === 206 && response.headers.has('Content-Encoding')) {
+      throw new Error('Compressed catalogue range response');
+    }
+  }
   if (!response.ok) throw new Error(`Catalogue request failed: ${response.status}`);
   const match = /^bytes (\d+)-\d+\/(\d+)$/.exec(response.headers.get('Content-Range') ?? '');
   const bytes = new Uint8Array(await response.arrayBuffer());

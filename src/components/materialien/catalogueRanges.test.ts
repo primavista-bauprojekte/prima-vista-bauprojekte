@@ -42,6 +42,19 @@ describe('openCatalogue', () => {
     expect(await open()).toEqual({ data: file });
   });
 
+  it('refetches ranges cut from a compressed cached copy', async () => {
+    const spy = vi.fn((_url: string, init: RequestInit) => {
+      const response = partial((init.headers as Record<string, string>).Range.replace('bytes=', ''));
+      if (init.cache !== 'no-store') response.headers.set('Content-Encoding', 'br');
+      return Promise.resolve(response);
+    });
+    vi.stubGlobal('fetch', spy);
+    const source = await open();
+    if (!('read' in source)) throw new Error('expected ranges');
+    expect(await source.read(0, RANGE_CHUNK)).toEqual(file.slice(0, RANGE_CHUNK));
+    expect(spy.mock.calls.every(([url]) => url === '/kataloge/x.pdf?ranges')).toBe(true);
+  });
+
   it('rejects missing files and files replaced while open', async () => {
     serve(() => new Response('', { status: 404 }));
     await expect(open()).rejects.toThrow('404');
