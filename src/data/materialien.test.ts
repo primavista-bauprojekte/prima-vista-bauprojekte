@@ -29,13 +29,14 @@ describe('material showroom data', () => {
     }
   });
 
-  it('has an image on disk for every entry', () => {
-    const images = [
+  it('has every image and catalogue PDF on disk', () => {
+    const files = [
       ...MATERIAL_CATEGORIES.map((entry) => entry.image),
       ...MATERIAL_SUBCATEGORIES.map((entry) => entry.image),
       ...MATERIAL_CATALOGUES.map((entry) => entry.cover),
+      ...MATERIAL_CATALOGUES.map((entry) => entry.file),
     ];
-    for (const image of images) expect(existsSync(`public${image}`), image).toBe(true);
+    for (const file of files) expect(existsSync(`public${file}`), file).toBe(true);
   });
 
   it.each([['en', en], ['fr', fr], ['it', it_]])('has the German material keys in %s', (_locale, pages) => {
