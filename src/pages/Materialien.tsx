@@ -13,7 +13,8 @@ import { usePageTitle } from '../hooks/usePageTitle';
 import '../styles/pages/materialien.css';
 
 // pdf.js and page-flip only load once a catalogue is opened.
-const CatalogueReader = lazy(() => import('../components/materialien/CatalogueReader'));
+const loadReader = () => import('../components/materialien/CatalogueReader');
+const CatalogueReader = lazy(loadReader);
 
 export default function Materialien() {
   const { t } = useTranslation('pages');
@@ -25,6 +26,9 @@ export default function Materialien() {
   const [reading, setReading] = useState<{ catalogue: MaterialCatalogue; page: number } | null>(null);
 
   usePageTitle(t('material.metaTitle'), t('material.metaDescription'));
+
+  // Fetch the reader's code ahead of the first click; opening retries a failure.
+  useEffect(() => { void loadReader().catch(() => undefined); }, []);
 
   // A category switch is an in-page view change: bring it into view and move
   // focus there. Layout's own scroll effect runs first (layout phase).
