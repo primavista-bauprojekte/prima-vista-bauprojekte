@@ -25,7 +25,7 @@ const open = () => openCatalogue('/kataloge/x.pdf', new AbortController().signal
 describe('openCatalogue', () => {
   afterEach(() => vi.unstubAllGlobals());
 
-  it('serves the start and the index from the opening requests', async () => {
+  it('reads blocks on demand', async () => {
     const spy = serve((range) => partial(range));
     const source = await open();
     if (!('read' in source)) throw new Error('expected ranges');
@@ -35,6 +35,27 @@ describe('openCatalogue', () => {
     expect(spy).toHaveBeenCalledTimes(2);
     expect(await source.read(RANGE_CHUNK, RANGE_CHUNK * 2)).toEqual(file.slice(RANGE_CHUNK, RANGE_CHUNK * 2));
     expect(spy).toHaveBeenCalledTimes(3);
+  });
+
+  it('requests everything a page needs at once, adjacent blocks together', async () => {
+    const spy = serve((range) => partial(range));
+    const map = { size: file.length, pages: [[0, 4], [0, 1, 2, 4]] };
+    const source = await openCatalogue('/kataloge/x.pdf', new AbortController().signal, map, 2);
+    if (!('read' in source)) throw new Error('expected ranges');
+    expect(spy).toHaveBeenCalledTimes(3);
+    expect(await source.read(RANGE_CHUNK, RANGE_CHUNK * 3)).toEqual(file.slice(RANGE_CHUNK, RANGE_CHUNK * 3));
+    expect(await source.read(RANGE_CHUNK * 4, RANGE_CHUNK * 5)).toEqual(file.slice(RANGE_CHUNK * 4));
+    source.prefetch(1);
+    source.prefetch(2);
+    expect(spy).toHaveBeenCalledTimes(3);
+  });
+
+  it('ignores a map made for another version of the file', async () => {
+    serve((range) => partial(range));
+    const map = { size: file.length - 500, pages: [[0, 4]] };
+    const source = await openCatalogue('/kataloge/x.pdf', new AbortController().signal, map, 1);
+    if (!('read' in source)) throw new Error('expected ranges');
+    expect(await source.read(RANGE_CHUNK * 4, file.length)).toEqual(file.slice(RANGE_CHUNK * 4));
   });
 
   it('falls back to the whole file when ranges are ignored', async () => {

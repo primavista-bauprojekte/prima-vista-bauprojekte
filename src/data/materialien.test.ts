@@ -1,9 +1,10 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import de from '../i18n/locales/de/pages.json';
 import en from '../i18n/locales/en/pages.json';
 import fr from '../i18n/locales/fr/pages.json';
 import it_ from '../i18n/locales/it/pages.json';
+import catalogueBlocks from './catalogueBlocks.json';
 import {
   MATERIAL_CATALOGUES,
   MATERIAL_CATEGORIES,
@@ -67,6 +68,14 @@ describe('material showroom data', () => {
       const first = pdf.indexOf('/Type/ObjStm');
       expect(first, file).toBeGreaterThan(-1);
       expect(pdf.length - first, file).toBeLessThan(128 * 1024);
+    }
+  });
+
+  it('has an up-to-date block map (scripts/map-catalogue-blocks.mjs)', () => {
+    const blocks: Partial<Record<string, { size: number; pages: number[][] }>> = catalogueBlocks;
+    for (const { file, pages } of MATERIAL_CATALOGUES) {
+      expect(blocks[file]?.size, file).toBe(statSync(`public${file}`).size);
+      expect(blocks[file]?.pages, file).toHaveLength(pages);
     }
   });
 
