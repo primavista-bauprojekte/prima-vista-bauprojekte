@@ -5,6 +5,7 @@ import { PageFlip } from 'page-flip';
 import {
   GlobalWorkerOptions,
   PDFDataRangeTransport,
+  PDFWorker,
   getDocument,
   version,
   type PDFDocumentLoadingTask,
@@ -13,7 +14,8 @@ import {
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import { businessContact } from '../../../shared/contact';
 import type { MaterialCatalogue } from '../../data/materialien';
-import { RANGE_CHUNK, openCatalogue, type CatalogueRanges } from './catalogueRanges';
+import { RANGE_CHUNK, openCatalogue, type BlockMap, type CatalogueRanges } from './catalogueRanges';
+import catalogueBlocks from '../../data/catalogueBlocks.json';
 import { MERKLISTE_LIMIT, isSaved, type SavedPage } from '../../data/merkliste';
 
 GlobalWorkerOptions.workerSrc = workerUrl;
@@ -37,12 +39,14 @@ type Props = {
 type Layout = { width: number; height: number; spread: boolean };
 type Rendered = { scale: number; url: string | null };
 
+const BLOCKS: Partial<Record<string, BlockMap>> = catalogueBlocks;
+
 class RangeTransport extends PDFDataRangeTransport {
-  #source: Extract<CatalogueRanges, { length: number }>;
+  #source: CatalogueRanges;
   #signal: AbortSignal;
   #onError: () => void;
 
-  constructor(source: Extract<CatalogueRanges, { length: number }>, signal: AbortSignal, onError: () => void) {
+  constructor(source: CatalogueRanges, signal: AbortSignal, onError: () => void) {
     super(source.length, null);
     this.#source = source;
     this.#signal = signal;
@@ -96,6 +100,7 @@ export default function CatalogueReader({ catalogue, initialPage, onClose, saved
   const pagesRef = useRef<HTMLElement[]>([]);
   const renderedRef = useRef(new Map<number, Rendered>());
   const pageRef = useRef(initialPage);
+  const sourceRef = useRef<CatalogueRanges | null>(null);
 
   const [doc, setDoc] = useState<PDFDocumentProxy | null>(null);
   const [ratio, setRatio] = useState(0);
@@ -127,6 +132,8 @@ export default function CatalogueReader({ catalogue, initialPage, onClose, saved
   useEffect(() => {
     let cancelled = false;
     let task: PDFDocumentLoadingTask | null = null;
+    // Start the worker while the first blocks are still on their way.
+    const worker = new PDFWorker();
     const controller = new AbortController();
     const fail = () => {
       if (cancelled) return;
@@ -136,9 +143,11 @@ export default function CatalogueReader({ catalogue, initialPage, onClose, saved
     };
     (async () => {
       try {
-        const source = await openCatalogue(catalogue.file, controller.signal);
+        const source = await openCatalogue(catalogue.file, controller.signal, BLOCKS[catalogue.file], pageRef.current);
         if (cancelled) return;
+        sourceRef.current = 'data' in source ? null : source;
         task = getDocument({
+          worker,
           ...('data' in source
             ? { data: source.data }
             : { range: new RangeTransport(source, controller.signal, fail) }),
@@ -168,7 +177,9 @@ export default function CatalogueReader({ catalogue, initialPage, onClose, saved
     return () => {
       cancelled = true;
       controller.abort();
-      void task?.destroy();
+      sourceRef.current = null;
+      if (task) void task.destroy().finally(() => worker.destroy());
+      else worker.destroy();
     };
   }, [catalogue.file]);
 
@@ -250,6 +261,10 @@ export default function CatalogueReader({ catalogue, initialPage, onClose, saved
       rendered.delete(number);
     });
 
+    // Both halves of a spread at once; the neighbours follow in turn.
+    sourceRef.current?.prefetch(page);
+    if (layout.spread) sourceRef.current?.prefetch(page + 1);
+
     (async () => {
       for (const number of order) {
         if (cancelled) return;
@@ -259,6 +274,7 @@ export default function CatalogueReader({ catalogue, initialPage, onClose, saved
         const existing = rendered.get(number);
         if (existing && existing.scale >= wanted) continue;
         try {
+          sourceRef.current?.prefetch(number);
           const pdfPage = await doc.getPage(number);
           const natural = pdfPage.getViewport({ scale: 1 });
           const fit = Math.min(layout.width / natural.width, layout.height / natural.height);
