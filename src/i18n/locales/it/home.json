@@ -227,7 +227,19 @@
     "sigName": "Daniel & Monica",
     "sigRole": "Fondatori & direzione lavori",
     "photoAlt": "Daniel e Monica — fondatori di Prima Vista Bauprojekte",
-    "photoLabel": "Daniel & Monica — 2026"
+    "photoLabel": "Daniel & Monica — 2026",
+    "people": {
+      "monica": {
+        "name": "Monica",
+        "role": "Titolare",
+        "alt": "Monica, titolare di Prima Vista Bauprojekte"
+      },
+      "daniel": {
+        "name": "Daniel",
+        "role": "Titolare",
+        "alt": "Daniel, titolare di Prima Vista Bauprojekte"
+      }
+    }
   },
   "testimonial": {
     "quote": "Temevamo la ristrutturazione — e siamo stati sorpresi: Prima Vista ha consegnato puntuale, pulito e così preciso che siamo riusciti a trasferirci un mese prima.",
