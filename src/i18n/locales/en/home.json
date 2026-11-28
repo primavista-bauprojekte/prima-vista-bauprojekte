@@ -227,7 +227,19 @@
     "sigName": "Daniel & Monica",
     "sigRole": "Founders & site management",
     "photoAlt": "Daniel and Monica — founders of Prima Vista Bauprojekte",
-    "photoLabel": "Daniel & Monica — 2026"
+    "photoLabel": "Daniel & Monica — 2026",
+    "people": {
+      "monica": {
+        "name": "Monica",
+        "role": "Owner",
+        "alt": "Monica, owner of Prima Vista Bauprojekte"
+      },
+      "daniel": {
+        "name": "Daniel",
+        "role": "Owner",
+        "alt": "Daniel, owner of Prima Vista Bauprojekte"
+      }
+    }
   },
   "testimonial": {
     "quote": "We were dreading the renovation — and were taken by surprise: Prima Vista delivered on time, clean and so precisely that we moved in a month early.",

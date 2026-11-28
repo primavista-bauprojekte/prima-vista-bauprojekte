@@ -18,6 +18,10 @@ import '../styles/pages/home.css';
 // Inline-markup map for stylized headings (line breaks + emphasis).
 const RICH = { em: <em />, br: <br /> } as const;
 const PROMISE_STEP_KEYS = ['1', '2', '3', '4', '5', '6'] as const;
+const FOUNDER_PORTRAITS = [
+  { key: 'monica', src: '/assets/img/founder-monica.webp', height: 600 },
+  { key: 'daniel', src: '/assets/img/founder-daniel.webp', height: 595 },
+] as const;
 
 export default function Home() {
   const { t } = useTranslation(['home', 'common']);
@@ -354,6 +358,17 @@ export default function Home() {
             <div className="founders__sig">
               <span className="founders__sig-name">{t('founders.sigName')}</span>
               <span className="founders__sig-role">{t('founders.sigRole')}</span>
+            </div>
+            <div className="founders__people">
+              {FOUNDER_PORTRAITS.map(({ key, src, height }) => (
+                <figure className="founders__person" key={key}>
+                  <img src={src} alt={t(`founders.people.${key}.alt`)} width="800" height={height} loading="lazy" decoding="async" />
+                  <figcaption>
+                    <span className="founders__person-name">{t(`founders.people.${key}.name`)}</span>
+                    <span className="founders__person-role">{t(`founders.people.${key}.role`)}</span>
+                  </figcaption>
+                </figure>
+              ))}
             </div>
             <HomeAboutVideo />
           </div>

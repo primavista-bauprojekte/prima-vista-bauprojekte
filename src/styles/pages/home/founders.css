@@ -169,3 +169,41 @@
 .founders-video__play-icon {
   fill: var(--pv-bone);
 }
+.founders__people {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: min(100%, 560px);
+  margin: 40px 0 0;
+}
+.founders__person {
+  margin: 0;
+}
+.founders__person img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--pv-ink-1);
+  border: 1px solid rgba(236, 229, 223, .16);
+}
+.founders__person figcaption {
+  margin-top: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.founders__person-name {
+  font-family: var(--pv-font-serif);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--pv-copper-bright);
+}
+.founders__person-role {
+  font-family: var(--pv-font-display);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pv-text-on-dark-muted);
+}
